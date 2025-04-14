@@ -1,22 +1,14 @@
-from modules.sr.srm import SpeechRecognitionModule
-from modules.ss.ssm import SpeechSynthesisModule
+import sys
+import os
+"""from dotenv import load_dotenv
+
+load_dotenv()  # Load .env file
+print("Loading environment variables...")"""
+
+from ..ui.gui import AssistantGUI
 
 def main():
-    print("Testing Speech Recognition Module...")
-    recognizer = SpeechRecognitionModule()
-    synthesizer = SpeechSynthesisModule()
-
-    while True:
-        text = recognizer.recognize_speech()
-        if text:
-            print("You said:", text)
-            synthesizer.synthesize_speech(f"You said: {text}")
-        
-        if text and text.lower() in ["exit", "quit", "stop"]:
-            print ("Exiting test")
-            synthesizer.synthesize_speech("Exiting test")
-            break
-
-    synthesizer.stop()
+    print("Launching Digital Assistant GUI...")
+    AssistantGUI()
 
 if __name__ == "__main__": main()

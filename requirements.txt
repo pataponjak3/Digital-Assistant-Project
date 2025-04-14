@@ -1,5 +1,5 @@
 # Core Python dependencies  
-#python-dotenv==1.0.0    # For managing environment variables  
+python-dotenv==1.1.0    # For managing environment variables  
 #requests==2.31.0        # For API calls (e.g., weather updates)  
 
 # Speech Recognition  
