@@ -3,9 +3,7 @@ from tkinter import messagebox
 """from modules.sr.srm import SpeechRecognitionModule
 from modules.ss.ssm import SpeechSynthesisModule
 from modules.nlp.keyword_intents import KeywordIntentRecognizer"""
-from ..modules.sr.srm import SpeechRecognitionModule
-from ..modules.ss.ssm import SpeechSynthesisModule
-from ..modules.nlp.keyword_intents import KeywordIntentRecognizer
+from ..core.config import ModuleLoader
 import threading
 
 class AssistantGUI:
@@ -14,9 +12,10 @@ class AssistantGUI:
         self.root.title("Digital Assistant")
         self.root.geometry("400x400")
 
-        self.recognizer = SpeechRecognitionModule()
-        self.synthesizer = SpeechSynthesisModule()
-        self.intent_recognizer = KeywordIntentRecognizer()
+        self.loader = ModuleLoader()
+        self.recognizer = self.loader.load_module("sr")
+        self.synthesizer = self.loader.load_module("ss")
+        self.intent_recognizer = self.loader.load_module("nlp")
 
         self.label = tk.Label(self.root, text="Press the button and speak", font=("Arial", 12))
         self.label.pack(pady=20)

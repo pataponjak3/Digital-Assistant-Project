@@ -1,0 +1,14 @@
+{
+    "nlp": {
+        "file": "keyword_intents",
+        "class": "KeywordIntentRecognizer"
+    },
+    "sr": {
+        "file": "srm",
+        "class": "SpeechRecognitionModule"
+    },
+    "ss": {
+        "file": "ssm",
+        "class": "SpeechSynthesisModule"
+    }
+}
