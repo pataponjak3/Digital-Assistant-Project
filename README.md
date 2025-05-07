@@ -6,3 +6,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python -m src.core.main
 deactivate
+
+
+# Python version
+Python 3.10

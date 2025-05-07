@@ -22,8 +22,7 @@ pyttsx3==2.98            # Offline TTS
 
 # GUI (Optional, if building a graphical interface)  
 #tkinter                   # Built-in for basic GUI  
-PyQt5
-pyqt5-tools
+#PyQt6==6.5.1             # Alternative for advanced UI  
 
 # Testing  
 #pytest==8.0.0           # For writing unit tests  
