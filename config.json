@@ -1,14 +1,21 @@
 {
-    "nlp": {
-        "file": "keyword_intents",
-        "class": "KeywordIntentRecognizer"
+    "modules":{
+        "nlp": {
+            "filePath": "nlp.keyword_intents",
+            "class": "KeywordIntentRecognizer"
+        },
+        "sr": {
+            "filePath": "sr.srm",
+            "class": "SpeechRecognitionModule"
+        },
+        "ss": {
+            "filePath": "ss.ssm",
+            "class": "SpeechSynthesisModule"
+        },
+        "meteorology": {
+            "filePath": "fn.met.meteorology",
+            "class": "MeteorologyService"
+        }
     },
-    "sr": {
-        "file": "srm",
-        "class": "SpeechRecognitionModule"
-    },
-    "ss": {
-        "file": "ssm",
-        "class": "SpeechSynthesisModule"
-    }
+    "apiKeys":{}
 }
