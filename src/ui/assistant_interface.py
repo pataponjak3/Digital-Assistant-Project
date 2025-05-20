@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtWidgets
+from .mic_settings_interface import Ui_MicSettingsWindow
 
 
 class AssistantGUI(object):
@@ -60,6 +61,7 @@ class AssistantGUI(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionMicrophone_Settings = QtWidgets.QAction(MainWindow)
         self.actionMicrophone_Settings.setObjectName("actionMicrophone_Settings")
+        self.actionMicrophone_Settings.triggered.connect(self.open_mic_settings)
         self.menuSettings.addAction(self.actionMicrophone_Settings)
         self.menubar.addAction(self.menuSettings.menuAction())
 
@@ -75,6 +77,13 @@ class AssistantGUI(object):
         self.checkBox.setText(_translate("MainWindow", "Enable Speech Output"))
         self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
         self.actionMicrophone_Settings.setText(_translate("MainWindow", "Microphone Settings"))
+
+    def open_mic_settings(self):
+        self.mic_settings_window = QtWidgets.QDialog()
+        self.mic_settings_ui = Ui_MicSettingsWindow(self.recognizer)
+        self.mic_settings_ui.setupUi(self.mic_settings_window)
+        self.mic_settings_window.exec_()
+
 
     def send_text_message(self):
         user_text = self.lineEdit.text().strip()
