@@ -18,7 +18,7 @@
         }
     },
     "apiKeys":{
-        "openweather": "be55fb2c6e62c76085b023e035c8348b",
+        "openweathermap": "be55fb2c6e62c76085b023e035c8348b",
 		"awanllm": "c7dac548-4d8f-4296-9c68-5afb9390e02e"
 	}
 }

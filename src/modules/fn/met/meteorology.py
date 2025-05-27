@@ -9,7 +9,13 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
         self.__data_url = self.__base_url + "/data/2.5"
         self.__api_key = api_key
 
-    def __send_resquest(self, url: str, params: dict) -> dict:
+    def _api_key(self):
+        return self.__api_key
+    
+    def _base_url(self):
+        return self.__base_url
+
+    def _send_resquest(self, url: str, params: dict) -> dict:
         """Send a request to the REST service."""
         response = requests.get(url, params=params)
         response.raise_for_status()

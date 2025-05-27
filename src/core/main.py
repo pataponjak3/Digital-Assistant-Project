@@ -1,20 +1,26 @@
 #from ..ui.gui import AssistantGUI
-from .config import ModuleLoader
+from .config import ModuleLoader, APIKeyManager
 import sys
 from ..ui.assistant_interface import AssistantGUI
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import json
+from ..modules.fn.met.meteorology import MeteorologyService
+from ..utils.system_prompt_generator import generate_llama_system_prompt
 
 def main():
-    #print("Launching Digital Assistant GUI...")
-    #AssistantGUI()
-    module_loader = ModuleLoader()
-    app = QApplication(sys.argv)
-    MainWindow = QMainWindow()
-    ui = AssistantGUI(module_loader)
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    #module_loader = ModuleLoader()
+    api_key_manager = APIKeyManager()
+    #app = QApplication(sys.argv)
+    #MainWindow = QMainWindow()
+    #ui = AssistantGUI(module_loader)
+    #ui.setupUi(MainWindow)
+    #MainWindow.show()
+    #sys.exit(app.exec_())
+    modules = {
+        "meteorology": MeteorologyService(api_key_manager.get_key("openweathermap"))
+    }
+    print(generate_llama_system_prompt(modules))
+
 
 if __name__ == "__main__": main()
 

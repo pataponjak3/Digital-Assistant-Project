@@ -5,7 +5,7 @@ class RESTServiceInterface(ABC):
 
     @property
     @abstractmethod
-    def __base_url(self) -> str:
+    def _base_url(self) -> str:
         """Base URL for the REST service."""
         pass
 
@@ -17,7 +17,7 @@ class RESTServiceInterface(ABC):
 
     @property
     @abstractmethod
-    def __api_key(self) -> str:
+    def _api_key(self) -> str:
         """API key for the REST service."""
         pass
 
@@ -28,7 +28,7 @@ class RESTServiceInterface(ABC):
     #    pass
 
     @abstractmethod
-    def __send_resquest(self, endpoint: str, params: dict) -> dict:
+    def _send_resquest(self, endpoint: str, params: dict) -> dict:
         """
         Send a request to the REST service.
 
