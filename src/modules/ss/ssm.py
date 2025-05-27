@@ -1,4 +1,4 @@
-from .ss import SpeechSynthesizer
+from ...interfaces.ss import SpeechSynthesizer
 import pyttsx3
 
 class SpeechSynthesisModule(SpeechSynthesizer):

@@ -1,5 +1,5 @@
-from ..rest_service import RESTServiceInterface
-from ..functionality import DAFunctionalityInterface
+from ....interfaces.rest_service import RESTServiceInterface
+from ....interfaces.functionality import DAFunctionalityInterface
 import requests
 
 class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):

@@ -1,4 +1,4 @@
-from .intent_base import IntentRecognizer
+from ...interfaces.intent_base import IntentRecognizer
 from typing import Optional, Dict
 
 class KeywordIntentRecognizer(IntentRecognizer):
