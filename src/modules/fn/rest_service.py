@@ -9,11 +9,11 @@ class RESTServiceInterface(ABC):
         """Base URL for the REST service."""
         pass
 
-    @__base_url.setter
-    @abstractmethod
-    def __base_url(self, value: str):
-        """Set the base URL for the REST service."""
-        pass
+    #@__base_url.setter
+    #@abstractmethod
+    #def __base_url(self, value: str):
+    #    """Set the base URL for the REST service."""
+    #    pass
 
     @property
     @abstractmethod
@@ -21,11 +21,11 @@ class RESTServiceInterface(ABC):
         """API key for the REST service."""
         pass
 
-    @__api_key.setter
-    @abstractmethod
-    def __api_key(self, value: str):
-        """Set the API key for the REST service."""
-        pass
+    #@__api_key.setter
+    #@abstractmethod
+    #def __api_key(self, value: str):
+    #    """Set the API key for the REST service."""
+    #    pass
 
     @abstractmethod
     def __send_resquest(self, endpoint: str, params: dict) -> dict:
