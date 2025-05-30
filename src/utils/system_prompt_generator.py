@@ -21,34 +21,36 @@ def generate_llama_system_prompt(modules: dict) -> str:
         "reply in JSON format like this:\n"
         "{\n"
         '  "function": "<function_name>",\n'
+        '  "module": "<module_name>",\n'
         '  "arguments": { "key": "value" }\n'
         "}\n\n"
         "Functions you can call:\n"
     )
 
     for module in modules.values():
-        if hasattr(module, "get_functions_schemas"):
-            for func in module.get_functions_schemas():
-                name = func.get("name", "unknown")
-                desc = func.get("description", "No description")
-                response_fmt = ", ".join(func.get("response_format", []))
+        for func in module.get_functions_schemas():
+            name = func.get("name", "unknown")
+            module = func.get("module", "unknown")
+            desc = func.get("description", "No description")
+            response_fmt = ", ".join(func.get("response_format", []))
 
-                prompt += f"\nFunction: {name}\nDescription: {desc}\nResponse Format: {response_fmt}\n"
+            prompt += f"\nFunction: {name}\nModule: {module}\nDescription: {desc}\nResponse Format: {response_fmt}\n"
 
-                # Parameters section
-                params = func.get("parameters", {})
-                if params and "properties" in params:
-                    prompt += "Parameters:\n" + describe_properties(params["properties"])
-                else:
-                    prompt += "Parameters: None\n"
+            # Parameters section
+            params = func.get("parameters", {})
+            if params and "properties" in params:
+                prompt += "Parameters:\n" + describe_properties(params["properties"])
+            else:
+                prompt += "Parameters: None\n"
 
-                # Response Schema section
-                response_schema = func.get("response_schema", {})
-                if response_schema:
-                    for fmt, schema in response_schema.items():
-                        prompt += f"Response Fields ({fmt}):\n" + describe_properties(schema.get("properties", {}))
-                else:
-                    prompt += "Response Fields: None\n"
+            # Response Schema section
+            response_schema = func.get("response_schema", {})
+            if response_schema:
+                for fmt, schema in response_schema.items():
+                    prompt += f"Response Fields ({fmt}):\n" + describe_properties(schema.get("properties", {}))
+            else:
+                prompt += "Response Fields: None\n"
+            
 
     prompt += (
         "\nIf the user's request doesn't match any function, just answer naturally in plain text.\n"

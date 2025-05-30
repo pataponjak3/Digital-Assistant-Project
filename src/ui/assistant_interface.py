@@ -10,15 +10,16 @@
 
 from PyQt5 import QtCore, QtWidgets
 from .mic_settings_interface import Ui_MicSettingsWindow
+from ..core.config import ModuleLoader
 
 
 class AssistantGUI(object):
-    def __init__(self, module_loader):
+    def __init__(self, module_loader: ModuleLoader):
         super().__init__()
         self.module_loader = module_loader
-        self.recognizer = self.module_loader.load_module("sr")
-        self.synthesizer = self.module_loader.load_module("ss")
-        self.intent_recognizer = self.module_loader.load_module("nlp")
+        self.recognizer = self.module_loader.load_base_module("sr")
+        self.synthesizer = self.module_loader.load_base_module("ss")
+        self.intent_recognizer = self.module_loader.load_base_module("nlp")
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")

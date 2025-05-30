@@ -1,20 +1,29 @@
 {
     "modules":{
-        "nlp": {
-            "filePath": "nlp.keyword_intents",
-            "class": "KeywordIntentRecognizer"
+        "base": {
+            "nlp": {
+                "filePath": "nlp.keyword_intents",
+                "class": "KeywordIntentRecognizer"
+            },
+            "sr": {
+                "filePath": "sr.srm",
+                "class": "SpeechRecognitionModule"
+            },
+            "ss": {
+                "filePath": "ss.ssm",
+                "class": "SpeechSynthesisModule"
+            },
+            "llm": {
+                "filePath": "llm.llama_adapter",
+                "class": "AwanLlamaAdapter",
+                "model": "Meta-Llama-3.1-8B-Instruct"
+            }
         },
-        "sr": {
-            "filePath": "sr.srm",
-            "class": "SpeechRecognitionModule"
-        },
-        "ss": {
-            "filePath": "ss.ssm",
-            "class": "SpeechSynthesisModule"
-        },
-        "meteorology": {
-            "filePath": "fn.met.meteorology",
-            "class": "MeteorologyService"
+        "fn": {
+            "meteorology": {
+                "filePath": "fn.met.meteorology",
+                "class": "MeteorologyService"
+            }
         }
     },
     "apiKeys":{

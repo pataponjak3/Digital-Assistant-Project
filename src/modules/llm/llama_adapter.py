@@ -1,11 +1,14 @@
 import requests
 import json
 
+from ...core.config import APIKeyManager
+from ...utils.system_prompt_generator import generate_llama_system_prompt
+
 class AwanLlamaAdapter:
-    def __init__(self, api_key: str, model: str, system_prompt: str):
-        self.api_key = api_key
+    def __init__(self, model: str, modules: dict):
+        self.api_key = APIKeyManager().get_key("awanllm")
         self.model = model
-        self.system_prompt = system_prompt
+        self.system_prompt = generate_llama_system_prompt(modules)
         self.api_url = "https://api.awanllm.com/v1/chat/completions"
         self.messages = [{"role": "system", "content": self.system_prompt}]  # Initial conversation history
 

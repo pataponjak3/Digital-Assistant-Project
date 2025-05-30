@@ -1,13 +1,14 @@
 from ....interfaces.rest_service import RESTServiceInterface
 from ....interfaces.functionality import DAFunctionalityInterface
+from ....core.config import APIKeyManager
 import requests
 
 class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
-    def __init__(self, api_key:str):
+    def __init__(self):
         self.__base_url = "api.openweathermap.org"
         self.__geo_url = self.__base_url + "/geo/1.0"
         self.__data_url = self.__base_url + "/data/2.5"
-        self.__api_key = api_key
+        self.__api_key = APIKeyManager().get_key("openweathermap")
 
     def _api_key(self):
         return self.__api_key
@@ -25,6 +26,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
         return [
             {
                 "name": "get_current_weather",
+                "module": "meteorology",
                 "description": "Retrieve the current weather for a location.",
                 "response_format": ["json"],
                 "parameters": {
@@ -128,6 +130,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
             },
             {
                 "name": "get_forecast",
+                "module": "meteorology",
                 "description": "Get a 5-day weather forecast in 3-hour intervals.",
                 "response_format": ["json"],
                 "parameters": {
@@ -243,6 +246,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
             },
             {
                 "name": "get_air_pollution",
+                "module": "meteorology",
                 "description": "Get air pollution index and pollutant levels for a location, at the current moment.",
                 "response_format": ["json"],
                 "parameters": {
