@@ -1,35 +1,41 @@
 import requests
-import os
-from ...interfaces.llm_adapter import LLMAdapterInterface
+import json
 
-class LLaMAAdapter(LLMAdapterInterface):
-    def __init__(self, modules: dict, api_key=None, model="Meta-Llama-3.1-8B-Instruct"):
-        self.api_key = api_key or os.getenv("AWAN_API_KEY")
+class AwanLlamaAdapter:
+    def __init__(self, api_key: str, model: str, system_prompt: str):
+        self.api_key = api_key
         self.model = model
-        self.endpoint = "https://api.awanllm.com/v1/chat/completions"
-        self.modules = modules
+        self.system_prompt = system_prompt
+        self.api_url = "https://api.awanllm.com/v1/chat/completions"
+        self.messages = [{"role": "system", "content": self.system_prompt}]  # Initial conversation history
 
-    def chat(self, messages: list[dict], functions: list[dict] = None) -> dict:
-        # Generate dynamic system prompt
-        #system_prompt = generate_llama_system_prompt(self.modules)
-
-        # Inject system prompt at the top of the messages
-        messages = [{"role": "system", "content": system_prompt}] + messages
+    def chat(self, user_input: str) -> str:
+        # Add user message to conversation history
+        self.messages.append({"role": "user", "content": user_input})
 
         payload = {
             "model": self.model,
-            "messages": messages
+            "messages": self.messages,
+            "temperature": 0.7,
+            "top_p": 0.9,
+            "repetition_penalty": 1.1,
+            "top_k": 40,
+            "max_tokens": 1024,
+            "stream": True
         }
 
         headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json',
+            'Authorization': f"Bearer {self.api_key}"
         }
 
-        response = requests.post(self.endpoint, json=payload, headers=headers)
+        response = requests.post(self.api_url, headers=headers, data=json.dumps(payload))
         response.raise_for_status()
 
-        return response.json()["choices"][0]["message"]
+        result = response.json()
+        assistant_message = result["choices"][0]["message"]["content"]
 
-    def get_provider_name(self) -> str:
-        return "Awan LLaMA"
+        # Add assistant message to conversation history
+        self.messages.append({"role": "assistant", "content": assistant_message})
+
+        return assistant_message
