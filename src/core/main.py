@@ -7,7 +7,6 @@ from .assistant import handle_user_message
 
 def main():
     module_loader = ModuleLoader()
-    api_key_manager = APIKeyManager()
     #app = QApplication(sys.argv)
     #MainWindow = QMainWindow()
     #ui = AssistantGUI(module_loader)
@@ -15,6 +14,7 @@ def main():
     #MainWindow.show()
     #sys.exit(app.exec_())
     modules = module_loader.load_functionality_modules()
+    print("Loaded modules:", modules.keys())
 
     llm_adapter = module_loader.load_base_module("llm", model=module_loader.get_llm_model(), modules=modules)
 

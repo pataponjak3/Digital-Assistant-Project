@@ -5,7 +5,7 @@ import requests
 
 class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
     def __init__(self):
-        self.__base_url = "api.openweathermap.org"
+        self.__base_url = "https://api.openweathermap.org"
         self.__geo_url = self.__base_url + "/geo/1.0"
         self.__data_url = self.__base_url + "/data/2.5"
         self.__api_key = APIKeyManager().get_key("openweathermap")
@@ -309,7 +309,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
         ]
 
     def execute_function(self, name: str, args: dict):
-        return getattr(self, f"__{name}")(**args)
+        return getattr(self, f"_{name}")(**args)
     
     def __resolve_coordinates(self, **kwargs) -> tuple[float, float]:
         """Get the geocoding information for a given location if not provided directly."""
@@ -323,7 +323,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
                 "zip": f"{kwargs['zip']},{kwargs['country_code']}",
                 "appid": self.__api_key
             }
-            data = self.__send_resquest(url, params)
+            data = self._send_resquest(url, params)
             return data["lat"], data["lon"]
 
         elif "city" in kwargs:
@@ -339,7 +339,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
                 "limit": 1,
                 "appid": self.__api_key
             }
-            data = self.__send_resquest(url, params)
+            data = self._send_resquest(url, params)
             if not data:
                 raise ValueError("No results found for the given location.")
             return data[0]["lat"], data[0]["lon"]
@@ -347,7 +347,7 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
         else:
             raise ValueError("Insufficient location information. Provide lat/lon, city, or zip + country_code.")
     
-    def __get_current_weather(self, **kwargs) -> dict:
+    def _get_current_weather(self, **kwargs) -> dict:
         lat, lon = self.__resolve_coordinates(**kwargs)
 
         url = f"{self.__data_url}/weather"
@@ -359,9 +359,9 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
             "lang": kwargs.get("lang", "en")
         }
 
-        return self.__send_resquest(url, params)
+        return self._send_resquest(url, params)
     
-    def __get_forecast(self, **kwargs) -> dict:
+    def _get_forecast(self, **kwargs) -> dict:
         lat, lon = self.__resolve_coordinates(**kwargs)
 
         url = f"{self.__data_url}/forecast"
@@ -373,9 +373,9 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
             "lang": kwargs.get("lang", "en")
         }
 
-        return self.__send_resquest(url, params)
+        return self._send_resquest(url, params)
     
-    def __get_air_pollution(self, **kwargs) -> dict:
+    def _get_air_pollution(self, **kwargs) -> dict:
         lat, lon = self.__resolve_coordinates(**kwargs)
 
         url = f"{self.__data_url}/air_pollution"
@@ -385,4 +385,4 @@ class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
             "appid": self.__api_key
         }
 
-        return self.__send_resquest(url, params)
+        return self._send_resquest(url, params)

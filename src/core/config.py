@@ -12,11 +12,14 @@ class ModuleLoader:
         if not module_info:
             raise ValueError(f"No implementation specified for {module_name} in config.")
         file_path = module_info.get("filePath")
+        print(f"====={file_path}")
         class_name = module_info.get("class")
+        print(f"====={class_name}")
         if not file_path or not class_name:
             raise ValueError(f"Misssing file path or class name for {module_name}")
         try:
             module = importlib.import_module(f"src.modules.{file_path}")
+            print("=====" + module.__name__)
             return getattr(module, class_name)(**kwargs)
         except ModuleNotFoundError:
             raise ImportError(f"Module 'src.modules.{file_path}' not found!")
@@ -29,6 +32,7 @@ class ModuleLoader:
         for module_name in modules_info:
             try:
                 modules[module_name] = self._load_module(modules_info, module_name)
+                print("=====" + module_name)
             except (ValueError, ImportError) as e:
                 print(f"Error loading module {module_name}: {e}")
         return modules

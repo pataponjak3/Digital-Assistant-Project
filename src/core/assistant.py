@@ -14,7 +14,7 @@ def handle_user_message(llm_adapter, modules: dict, user_input: str) -> str:
                 module = modules.get(module_name)
 
                 try:
-                    result = module.execute_function_call(func_name, args)
+                    result = module.execute_function(func_name, args)
                     final_response = llm_adapter.chat(json.dumps(result))
                     return final_response
                 except Exception as e:
