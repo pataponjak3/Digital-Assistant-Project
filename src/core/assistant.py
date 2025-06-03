@@ -2,7 +2,7 @@ import json
 
 def handle_user_message(llm_adapter, modules: dict, user_input: str) -> str:
     try:
-        llm_response = llm_adapter.chat(user_input)
+        llm_response = llm_adapter.chat(user_input, True)
 
         try:
             parsed = json.loads(llm_response)
@@ -14,8 +14,8 @@ def handle_user_message(llm_adapter, modules: dict, user_input: str) -> str:
                 module = modules.get(module_name)
 
                 try:
-                    result = module.execute_function(func_name, args)
-                    final_response = llm_adapter.chat(json.dumps(result))
+                    message = module.execute_function(func_name, args)
+                    final_response = llm_adapter.chat(message, False)
                     return final_response
                 except Exception as e:
                     return f"Error executing function: {e}"

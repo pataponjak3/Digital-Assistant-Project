@@ -4,11 +4,11 @@ class DAFunctionalityInterface(ABC):
     """Interface for functionalities of the DA"""
 
     @abstractmethod
-    def get_functions_schemas(self) -> list[dict]:
-        """Definition of the functions' schemas.
+    def get_functions_description(self) -> list[str]:
+        """Definition of the functions' description.
         This is an important part of each functionality, because this will demonstrate to the DA how the function works.
 
-        :return: A list of dictionaries, each containing the schema of a function.
+        :return: A list of dictionaries, each containing the description of a function.
         """
     
     @abstractmethod

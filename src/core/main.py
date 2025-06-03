@@ -4,6 +4,7 @@ import sys
 from ..ui.assistant_interface import AssistantGUI
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from .assistant import handle_user_message
+from ..utils.system_prompt_generator import generate_llama_system_prompt
 
 def main():
     module_loader = ModuleLoader()
