@@ -3,7 +3,7 @@ from ....interfaces.functionality import DAFunctionalityInterface
 from ....core.config import APIKeyManager
 import requests, datetime
 
-class MeteorologyService(RESTServiceInterface, DAFunctionalityInterface):
+class MeteorologyFunctionality(RESTServiceInterface, DAFunctionalityInterface):
     def __init__(self):
         self.__base_url = "https://api.openweathermap.org"
         self.__geo_url = self.__base_url + "/geo/1.0"
@@ -457,8 +457,6 @@ Arguments: Same as get_current_weather."""
 
         #Weather
         weather_desc = response["weather"][0].get("description").capitalize()
-        weather_icon = response["weather"][0].get("icon")
-        icon = f'<img src="{self.__icons}{weather_icon}.png">' if weather_icon else ""
 
         #Temperatures
         temp = response["main"].get("temp", None)
@@ -489,8 +487,8 @@ Arguments: Same as get_current_weather."""
         sunset_time = datetime.datetime.utcfromtimestamp(sunset + timezone).strftime('%H:%M') if sunset else None
 
         # Build message
-        report = f"🌤️ **Weather Report for {location_str}**\n"
-        report += f"- Condition: {weather_desc} {icon}\n"
+        report = f"Weather Report for {location_str}\n"
+        report += f"- Condition: {weather_desc}\n"
         report += f"- Temperature: {temp_str}\n"
         if humidity: report += f"- Humidity: {humidity}%\n"
         if pressure: report += f"- Pressure: {pressure} hPa\n"
@@ -516,7 +514,7 @@ Arguments: Same as get_current_weather."""
         timezone = response.get("city", {}).get("timezone", 0)
         unit = self.__units.get(response.get('units'))
 
-        header = f"📅 5-Day Weather Forecast for {location_str}:\n"
+        header = f"5-Day Weather Forecast for {location_str}:\n"
         forecast_list = response["list"]
 
         report = ""
@@ -524,10 +522,8 @@ Arguments: Same as get_current_weather."""
             dt = item.get("dt")
             time_str = datetime.datetime.utcfromtimestamp(dt + timezone).strftime("%d/%m %H:%M") if dt else "Unknown time"
             weather_desc = item["weather"][0].get("description", "No description").capitalize()
-            weather_icon = item["weather"][0].get("icon")
-            icon = f'<img src="{self.__icons}{weather_icon}.png">' if weather_icon else ""
             temp = item["main"].get("temp")
-            report += f"- [{time_str}] {icon} {weather_desc}, {temp}{unit}\n"
+            report += f"- [{time_str}] {weather_desc}, {temp}{unit}\n"
         
         return header + report.strip()
     
@@ -555,7 +551,7 @@ Arguments: Same as get_current_weather."""
             5: "Very Poor"
         }.get(aqi, "Unknown")
 
-        report = f"🌬️ Air Quality Report in {location_str}:\n- AQI: {aqi} ({aqi_meaning})\n" + "\n".join(pollutant_strings)
+        report = f"Air Quality Report in {location_str}:\n- AQI: {aqi} ({aqi_meaning})\n" + "\n".join(pollutant_strings)
 
         return report.strip()
 

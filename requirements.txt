@@ -6,14 +6,10 @@ requests==2.32.3        # For API calls (e.g., weather updates)
 SpeechRecognition==3.14.2	# For converting speech to text  
 pyaudio==0.2.14			# Required for live audio processing  
 
-# Natural Language Processing (NLP)  
-#nltk==3.8.1              # NLP toolkit  
-#spacy==3.6.1             # Alternative NLP framework  
-#transformers==4.36.2     # If using LLMs for advanced responses  
-
 # Text-to-Speech (TTS)  
 pyttsx3==2.98            # Offline TTS  
-#gTTS==2.4.0              # Google Text-to-Speech (online)  
+
+rapidfuzz==3.13.0        # For fuzzy string matching (e.g., command recognition)
 
 # Automation (for launching applications & searching files)  
 #pyautogui==0.9.54        # For controlling the OS  
@@ -21,8 +17,7 @@ pyttsx3==2.98            # Offline TTS
 #keyboard==0.13.5         # For handling keyboard input  
 
 # GUI (Optional, if building a graphical interface)  
-#tkinter                   # Built-in for basic GUI  
-#PyQt6==6.5.1             # Alternative for advanced UI  
+PyQt5
 
 # Testing  
 #pytest==8.0.0           # For writing unit tests  

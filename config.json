@@ -22,7 +22,7 @@
         "fn": {
             "meteorology": {
                 "filePath": "fn.met.meteorology",
-                "class": "MeteorologyService"
+                "class": "MeteorologyFunctionality"
             }
         }
     },

@@ -35,7 +35,10 @@ def generate_llama_system_prompt(modules: dict) -> str:
             prompt += func + "\n\n"
     
     prompt += (
-        "Always respond with the JSON format for functions, and nothing else."
+        "Only respond with a JSON object when the user’s message clearly requires calling a function (like requesting weather or pollution data). "
+        "For example, \"What’s the weather in Lisbon?\" would match a function.\n\n"
+        "If the user refers to earlier data or asks follow-up questions about information you already returned (e.g., “What can you tell me about this data?”), answer NATURALLY and DO NOT generate a JSON object.\n\n"
+        "Never reflect on how you should have responded. Focus on answering the user’s latest question or request clearly and helpfully, using the information you already provided if relevant."
     )
 
     # prompt = (
