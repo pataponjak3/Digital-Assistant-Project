@@ -3,11 +3,11 @@ import json
 import os
 
 class ModuleLoader:
-    def __init__(self, config_path="config.json"):
+    def __init__(self, config_path="src/config/config.json"):
         with open(os.path.abspath(config_path), "r") as file:
-            self.config = json.load(file)
+            self.config: dict = json.load(file)
 
-    def _load_module(self, config_part, module_name: str, **kwargs):
+    def _load_module(self, config_part: dict, module_name: str, **kwargs):
         module_info = config_part.get(module_name)
         if not module_info:
             raise ValueError(f"No implementation specified for {module_name} in config.")
@@ -51,7 +51,7 @@ class ModuleLoader:
 
 
 class APIKeyManager:
-    def __init__(self, config_path="config.json"):
+    def __init__(self, config_path="src/config/config.json"):
         self._keys = {}
         self._load_keys(config_path)
     

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
-class LLMAdapterInterface(ABC):
+class LLMAdapter(ABC):
     @abstractmethod
-    def _chat(self, input: str, user_message: bool) -> str:
+    def chat(self, input: str, user_message: bool) -> str:
         """
         Send a chat message to the LLM and get a response.
         :param user_input: Message.

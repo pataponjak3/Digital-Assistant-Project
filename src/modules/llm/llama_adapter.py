@@ -1,20 +1,18 @@
 import requests
 import json
 
-from ...core.config import APIKeyManager
-from ...utils.system_prompt_generator import generate_llama_system_prompt
+from ...config.config import APIKeyManager
 
 class AwanLlamaAdapter:
-    def __init__(self, model: str, functionality_modules: dict):
+    def __init__(self, model: str, prompt: str):
         self.api_key = APIKeyManager().get_key("awanllm")
         self.model = model
-        self.functionality_modules = functionality_modules
-        self.system_prompt = generate_llama_system_prompt(functionality_modules)
+        self.system_prompt = prompt
         print("=====" + self.system_prompt)
         self.api_url = "https://api.awanllm.com/v1/chat/completions"
         self.messages = [{"role": "system", "content": self.system_prompt}]  # Initial conversation history
 
-    def chat(self, input: str, user_message: bool) -> str:
+    def chat(self, input: str, user_message=True) -> str:
         def is_json(text):
             try:
                 json.loads(text)
@@ -57,33 +55,3 @@ class AwanLlamaAdapter:
         print("=====" + input)
 
         return input
-    
-    def handle_user_message(self, user_input: str) -> str:
-        try:
-            llm_response = self.chat(user_input, True)
-
-            try:
-                parsed = json.loads(llm_response)
-                if "function" in parsed and "arguments" in parsed:
-                    func_name = parsed["function"]
-                    module_name = parsed["module"]
-                    args = parsed["arguments"]
-
-                    module = self.functionality_modules.get(module_name)
-
-                    try:
-                        message = module.execute_function(func_name, args)
-                        final_response = self.chat(message, False)
-                        return final_response
-                    except Exception as e:
-                        return f"Error executing function: {e}"
-                else:
-                    # Not a function call, return natural response
-                    return llm_response
-
-            except json.JSONDecodeError:
-                # Not JSON, return as-is
-                return llm_response
-
-        except Exception as e:
-            return f"Error: {e}"

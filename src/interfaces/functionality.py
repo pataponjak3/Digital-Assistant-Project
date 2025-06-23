@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class DAFunctionalityInterface(ABC):
+class Functionality(ABC):
     """Interface for functionalities of the DA"""
 
     @abstractmethod

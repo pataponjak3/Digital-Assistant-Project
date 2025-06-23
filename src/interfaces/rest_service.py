@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class RESTServiceInterface(ABC):
+class RESTService(ABC):
     """Interface for REST services."""
 
     @property

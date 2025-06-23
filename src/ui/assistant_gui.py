@@ -10,18 +10,18 @@
 
 from PyQt5 import QtCore, QtWidgets
 from .mic_settings_interface import Ui_MicSettingsWindow
-from ..core.config import ModuleLoader
-from ..interfaces.llm_adapter import LLMAdapterInterface
+from ..config.config import ModuleLoader
+from ..interfaces.sr import SpeechRecognizer
+from ..interfaces.ss import SpeechSynthesizer
 
 
 class AssistantGUI(object):
-    def __init__(self, module_loader: ModuleLoader, llm_adapter: LLMAdapterInterface):
+    def __init__(self, module_loader: ModuleLoader, backend):
         super().__init__()
-        self.module_loader = module_loader
-        self.recognizer = self.module_loader.load_base_module("sr")
-        self.synthesizer = self.module_loader.load_base_module("ss")
-        self.llm_adapter = llm_adapter
-
+        self.__module_loader = module_loader
+        self.__recognizer: SpeechRecognizer = self.__module_loader.load_base_module("sr")
+        self.__synthesizer: SpeechSynthesizer = self.__module_loader.load_base_module("ss")
+        self.__backend = backend
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -82,7 +82,7 @@ class AssistantGUI(object):
 
     def open_mic_settings(self):
         self.mic_settings_window = QtWidgets.QDialog()
-        self.mic_settings_ui = Ui_MicSettingsWindow(self.recognizer)
+        self.mic_settings_ui = Ui_MicSettingsWindow(self.__recognizer)
         self.mic_settings_ui.setupUi(self.mic_settings_window)
         self.mic_settings_window.exec_()
 
@@ -93,26 +93,14 @@ class AssistantGUI(object):
 
 
     def send_voice_message(self):
-        spoken_text = self.recognizer.recognize_speech()
+        spoken_text = self.__recognizer.recognize_speech()
         self.send_message(spoken_text)
 
     def send_message(self, user_message):
         if user_message:
-            #self.update_chat(f"User -> {user_message}")
-            #self.lineEdit.clear()
-            #self.update_chat(f"DA -> You said '{user_message}'")
-            #self.say_text(f"User said: {user_message}")
-            #intent_data = self.intent_recognizer.recognize_intent(user_message)
-            #if intent_data:
-            #    intent_str = f"Intent: {intent_data['intent']} | Value: {intent_data['value']}"
-            #    self.update_chat(f"DA -> {intent_str}")
-            #    self.say_text(f"This is the intent: {intent_data['intent']} with value: {intent_data['value']}")
-            #else:
-            #    self.update_chat("DA -> Intent was not recognized")
-            #    self.say_text("I could not recognize your intent")
             self.update_chat(f"User -> {user_message}")
             self.lineEdit.clear()
-            response = self.llm_adapter.handle_user_message(user_message)
+            response = self.__backend.handle_user_message(user_message)
             self.update_chat(f"DA -> {response}")
             self.say_text(response)
     
@@ -121,7 +109,7 @@ class AssistantGUI(object):
 
     def say_text(self, text):
         if self.checkBox.isChecked():
-            self.synthesizer.synthesize_speech(text)
+            self.__synthesizer.synthesize_speech(text)
 
 
 

@@ -1,10 +1,10 @@
-from ....interfaces.functionality import DAFunctionalityInterface
+from ....interfaces.functionality import Functionality
 import os
 import subprocess
 from win32com.client import Dispatch
 from rapidfuzz import process, fuzz
 
-class OSFunctionality(DAFunctionalityInterface):
+class OSFunctionality(Functionality):
     # Define common Start Menu directories
     START_MENU_DIRS = [
         os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs"),
