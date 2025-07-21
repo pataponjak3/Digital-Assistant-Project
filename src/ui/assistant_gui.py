@@ -16,11 +16,10 @@ from ..interfaces.ss import SpeechSynthesizer
 
 
 class AssistantGUI(object):
-    def __init__(self, module_loader: ModuleLoader, backend):
+    def __init__(self, recognizer: SpeechRecognizer, synthesizer: SpeechSynthesizer, backend):
         super().__init__()
-        self.__module_loader = module_loader
-        self.__recognizer: SpeechRecognizer = self.__module_loader.load_base_module("sr")
-        self.__synthesizer: SpeechSynthesizer = self.__module_loader.load_base_module("ss")
+        self.__recognizer = recognizer
+        self.__synthesizer = synthesizer
         self.__backend = backend
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")

@@ -21,7 +21,7 @@ class AssistantBackend:
                     except Exception as e:
                         return f"Error executing function: {e}"
                 else:
-                    # Not a function call, return natural response
+                    # Not a function call, return as-is
                     return response
 
             except json.JSONDecodeError:

@@ -8,7 +8,7 @@ class AwanLlamaAdapter:
         self.api_key = APIKeyManager().get_key("awanllm")
         self.model = model
         self.system_prompt = prompt
-        print("=====" + self.system_prompt)
+        print("=====" + self.system_prompt + "\n=====" + self.model)
         self.api_url = "https://api.awanllm.com/v1/chat/completions"
         self.messages = [{"role": "system", "content": self.system_prompt}]  # Initial conversation history
 

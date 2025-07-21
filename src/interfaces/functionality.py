@@ -8,7 +8,8 @@ class Functionality(ABC):
         """Definition of the functions' description.
         This is an important part of each functionality, because this will demonstrate to the DA how the function works.
 
-        :return: A list of dictionaries, each containing the description of a function.
+        :return: A list of strings, each containing the description of a function.
+        :rtype: list[str]
         """
     
     @abstractmethod
@@ -16,6 +17,9 @@ class Functionality(ABC):
         """Execute the function with the given name and arguments.
         
         :param name: The name of the function to execute.
+        :type name: str
         :param args: The arguments to pass to the function.
-        :return: The result of the function execution.
+        :type args: dict
+        :return: The result of the function's execution.
+        :rtype: Any
         """

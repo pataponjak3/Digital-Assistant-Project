@@ -19,7 +19,7 @@ def main():
     # Initialize the GUI
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = AssistantGUI(module_loader, backend)
+    ui = AssistantGUI(module_loader.load_base_module("sr"), module_loader.load_base_module("ss"), backend)
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

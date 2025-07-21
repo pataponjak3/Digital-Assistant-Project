@@ -12,6 +12,7 @@ class OSFunctionality(Functionality):
     ]
 
     EXCLUDE_KEYWORDS = ["uninstall", "setup", "remove", "update", "help", "readme", "documentation", "docs", "manual", "config", "configuration", "preferences", "settings", "about", "license", "legal", "terms", "privacy"]
+
     def get_functions_description(self):
         return [
 """Function: launch_application
@@ -33,6 +34,13 @@ Arguments:
         return getattr(self, f"_{name}")(**args)
     
     def __is_valid_app_shortcut(self, path: str) -> bool:
+        """Validates if the given path is a valid application shortcut.
+        
+        :param path: The path to the shortcut file.
+        :type path: str
+        :return: A boolean indicating if the shortcut is valid.
+        :rtype: bool
+        """
         ext = os.path.splitext(path)[1].lower()
         if ext not in [".lnk", ".url"]:
             return False
@@ -51,6 +59,11 @@ Arguments:
             return False
         
     def __get_all_shortcuts(self):
+        """Recursively retrieves all valid application shortcuts from the Start Menu directories.
+        
+        :return: A dictionary mapping application names to their shortcut paths.
+        :rtype: dict
+        """
         shortcuts = {}
         for base_dir in self.START_MENU_DIRS:
             for root, _, files in os.walk(base_dir):
@@ -59,12 +72,42 @@ Arguments:
                     if ext not in [".lnk", ".url"]:
                         continue
                     full_path = os.path.join(root, file)
-                    if self.is_valid_shortcut(full_path):
+                    if self.__is_valid_app_shortcut(full_path):
                         name = os.path.splitext(file)[0].strip().lower()
                         shortcuts[name] = full_path
+        print
         return shortcuts
     
+    def __get_best_matches(self, app_name: str, shortcuts: dict, limit=5, score_threshold=80):
+        """Finds the best matching application shortcuts based on the provided application name.
+        
+        :param app_name: The name of the application to match.
+        :type app_name: str
+        :param shortcuts: A dictionary mapping application names to their shortcut paths.
+        :type shortcuts: dict
+        :param limit: The maximum number of matches to return.
+        :type limit: int
+        :param score_threshold: The minimum score threshold for a match.
+        :type score_threshold: int
+        :return: A list of tuples containing the matched application names and their scores.
+        :rtype: list[tuple(str, int)]"""
+        matches = process.extract(
+            query=app_name,
+            choices=shortcuts.keys(),
+            scorer=fuzz.partial_ratio,
+            limit=limit
+        )
+
+        return [(match, score) for match, score, _ in matches if score >= score_threshold]
+    
     def _launch_application(self, app_name: str):
+        """Launches an application by its name.
+        
+        :param app_name: The name of the application to launch.
+        :type app_name: str
+        :return: A string indicating the result of the launch attempt.
+        :rtype: str
+        """
         app_query = app_name.lower().strip()
 
         existing_dirs = [d for d in self.START_MENU_DIRS if os.path.isdir(d)]
@@ -83,14 +126,7 @@ Arguments:
                 "If your desired application is not found, please ensure it has a shortcut in the Start Menu."
             )
         
-        matches = process.extract(
-            query=app_query,
-            choices=shortcuts.keys(),
-            scorer=fuzz.token_sort_ratio,
-            limit=5
-        )
-
-        high_matches = [match for match in matches if match[1] >= 80]
+        high_matches = self.__get_best_matches(app_query, shortcuts)
 
         if not high_matches:
             return (

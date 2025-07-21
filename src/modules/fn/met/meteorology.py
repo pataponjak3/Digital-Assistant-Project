@@ -46,7 +46,6 @@ Arguments: Same as get_current_weather."""
         ]
 
     def execute_function(self, name: str, args: dict):
-        print(f"Module: {self}, function: {name}, args: {args}")
         return getattr(self, f"_{name}")(**args)
     
     def __resolve_coordinates(self, **kwargs) -> dict:
@@ -60,6 +59,7 @@ Arguments: Same as get_current_weather."""
                 "appid": self.__api_key
             }
             data = self._send_resquest(url, params)
+            print(data)
             if isinstance(data, dict) and data.get("cod") == 404:
                 raise ValueError("No results found for the given location.")
             if not isinstance(data, list) or not data:
