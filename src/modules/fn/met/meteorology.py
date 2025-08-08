@@ -1,16 +1,16 @@
-from ....interfaces.rest_service import RESTService
-from ....interfaces.functionality import Functionality
+from ....interfaces.rest_service_interface import RESTService
+from ....interfaces.functionality_interface import Functionality
 from ....config.config import APIKeyManager
 import requests, datetime
 
 class MeteorologyFunctionality(RESTService, Functionality):
-    def __init__(self):
-        self.__base_url = "https://api.openweathermap.org"
-        self.__geo_url = self.__base_url + "/geo/1.0"
-        self.__data_url = self.__base_url + "/data/2.5"
-        #self.__icons = "https://openweathermap.org/img/wn/"
-        self.__api_key = APIKeyManager().get_key("openweathermap")
-        self.__units = {"metric": "°C", "imperial": "°F", "standard": "K"}
+
+    __base_url = "https://api.openweathermap.org"
+    __geo_endpoint = "geo/1.0"
+    __data_endpoint = "data/2.5"
+    #self.__icons = "https://openweathermap.org/img/wn/"
+    __api_key = APIKeyManager().get_key("openweathermap")
+    __units = {"metric": "°C", "imperial": "°F", "standard": "K"}        
 
     def _api_key(self):
         return self.__api_key
@@ -18,9 +18,12 @@ class MeteorologyFunctionality(RESTService, Functionality):
     def _base_url(self):
         return self.__base_url
 
-    def _send_resquest(self, url: str, params: dict) -> dict:
-        """Send a request to the REST service."""
-        response = requests.get(url, params=params)
+    def _send_resquest(self, method:str, endpoint: str, **kwargs) -> dict:
+        response = requests.request(
+            method=method,
+            url = f"{self.__base_url}/{endpoint}",
+            params=kwargs.get('params')
+        )
         response.raise_for_status()
         return response.json()
     
@@ -51,14 +54,14 @@ Arguments: Same as get_current_weather."""
     def __resolve_coordinates(self, **kwargs) -> dict:
         """Get the geocoding information for a given location if not provided directly."""
         if "lat" in kwargs and "lon" in kwargs:
-            url = f"{self.__geo_url}/reverse"
+            endpoint = f"{self.__geo_endpoint}/reverse"
             params = {
                 "lat": kwargs["lat"],
                 "lon": kwargs["lon"],
                 "limit": 1,
                 "appid": self.__api_key
             }
-            data = self._send_resquest(url, params)
+            data = self._send_resquest("GET", endpoint, params = params)
             print(data)
             if isinstance(data, dict) and data.get("cod") == 404:
                 raise ValueError("No results found for the given location.")
@@ -73,12 +76,12 @@ Arguments: Same as get_current_weather."""
 
         elif "zip" in kwargs and "country_code" in kwargs:
             # Zip geocode lookup
-            url = f"{self.__geo_url}/zip"
+            endpoint = f"{self.__geo_endpoint}/zip"
             params = {
                 "zip": f"{kwargs['zip']},{kwargs['country_code']}",
                 "appid": self.__api_key
             }
-            data = self._send_resquest(url, params)
+            data = self._send_resquest("GET", endpoint, params = params)
             if isinstance(data, dict) and data.get("cod") == 404:
                 raise ValueError("No results found for the given location.")
             if not isinstance(data, list) or not data:
@@ -92,7 +95,7 @@ Arguments: Same as get_current_weather."""
 
         elif "city" in kwargs:
             # Direct geocode lookup
-            url = f"{self.__geo_url}/direct"
+            endpoint = f"{self.__geo_endpoint}/direct"
             q = kwargs["city"]
             if "state_code" in kwargs:
                 q += f",{kwargs['state_code']}"
@@ -103,7 +106,7 @@ Arguments: Same as get_current_weather."""
                 "limit": 1,
                 "appid": self.__api_key
             }
-            data = self._send_resquest(url, params)
+            self._send_resquest("GET", endpoint, params = params)
             if isinstance(data, dict) and data.get("cod") == 404:
                 raise ValueError("No results found for the given location.")
             if not isinstance(data, list) or not data:
@@ -124,7 +127,7 @@ Arguments: Same as get_current_weather."""
         except ValueError as e:
             return str(e)
 
-        url = f"{self.__data_url}/weather"
+        endpoint = f"{self.__data_endpoint}/weather"
         params = {
             "lat": info["lat"],
             "lon": info["lon"],
@@ -133,7 +136,7 @@ Arguments: Same as get_current_weather."""
             "lang": kwargs.get("lang", "en")
         }
 
-        response = self._send_resquest(url, params)
+        response = self._send_resquest("GET", endpoint, params = params)
         response["city_name"] = info["city"]
         response["country"] = info["country"]
         response["units"] = kwargs.get("units", "metric")
@@ -146,7 +149,7 @@ Arguments: Same as get_current_weather."""
         except ValueError as e:
             return str(e)
 
-        url = f"{self.__data_url}/forecast"
+        endpoint = f"{self.__data_endpoint}/forecast"
         params = {
             "lat": info["lat"],
             "lon": info["lon"],
@@ -155,7 +158,7 @@ Arguments: Same as get_current_weather."""
             "lang": kwargs.get("lang", "en")
         }
 
-        response = self._send_resquest(url, params)
+        response = self._send_resquest("GET", endpoint, params = params)
         response["city_name"] = info["city"]
         response["country"] = info["country"]
         response["units"] = kwargs.get("units", "metric")
@@ -167,14 +170,14 @@ Arguments: Same as get_current_weather."""
         except ValueError as e:
             return str(e)
 
-        url = f"{self.__data_url}/air_pollution"
+        endpoint = f"{self.__data_endpoint}/air_pollution"
         params = {
             "lat": info["lat"],
             "lon": info["lon"],
             "appid": self.__api_key
         }
 
-        response = self._send_resquest(url, params)
+        response = self._send_resquest("GET", endpoint, params = params)
         response["city_name"] = info["city"]
         response["country"] = info["country"]
         response["units"] = kwargs.get("units", "metric")
@@ -221,7 +224,7 @@ Arguments: Same as get_current_weather."""
         sunset_time = datetime.datetime.utcfromtimestamp(sunset + timezone).strftime('%H:%M') if sunset else None
 
         # Build message
-        report = f"Weather Report for {location_str}\n"
+        report = f"Here's the Weather Report for {location_str}\n"
         report += f"- Condition: {weather_desc}\n"
         report += f"- Temperature: {temp_str}\n"
         if humidity: report += f"- Humidity: {humidity}%\n"

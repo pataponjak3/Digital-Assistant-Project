@@ -5,7 +5,8 @@ class Functionality(ABC):
 
     @abstractmethod
     def get_functions_description(self) -> list[str]:
-        """Definition of the functions' description.
+        """
+        Definition of the functions' description.
         This is an important part of each functionality, because this will demonstrate to the DA how the function works.
 
         :return: A list of strings, each containing the description of a function.
@@ -14,7 +15,8 @@ class Functionality(ABC):
     
     @abstractmethod
     def execute_function(self, name:str, args:dict):
-        """Execute the function with the given name and arguments.
+        """
+        Execute the function with the given name and arguments.
         
         :param name: The name of the function to execute.
         :type name: str

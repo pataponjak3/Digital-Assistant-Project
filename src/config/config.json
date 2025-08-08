@@ -2,15 +2,15 @@
     "modules":{
         "base": {
             "sr": {
-                "filePath": "sr.srm",
+                "filePath": "base.sr.srm",
                 "class": "SpeechRecognitionModule"
             },
             "ss": {
-                "filePath": "ss.ssm",
+                "filePath": "base.ss.ssm",
                 "class": "SpeechSynthesisModule"
             },
             "llm": {
-                "filePath": "llm.llama_adapter",
+                "filePath": "base.llm.llama_adapter",
                 "class": "AwanLlamaAdapter",
                 "model": "Meta-Llama-3.1-8B-Instruct"
             }

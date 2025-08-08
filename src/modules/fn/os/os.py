@@ -1,23 +1,24 @@
-from ....interfaces.functionality import Functionality
+from ....interfaces.functionality_interface import Functionality
 import os
 import subprocess
 from win32com.client import Dispatch
 from rapidfuzz import process, fuzz
+from typing import Tuple
 
 class OSFunctionality(Functionality):
     # Define common Start Menu directories
-    START_MENU_DIRS = [
+    __START_MENU_DIRS = [
         os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs"),
         os.path.expandvars(r"%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs")
     ]
 
-    EXCLUDE_KEYWORDS = ["uninstall", "setup", "remove", "update", "help", "readme", "documentation", "docs", "manual", "config", "configuration", "preferences", "settings", "about", "license", "legal", "terms", "privacy"]
+    __EXCLUDE_KEYWORDS = ["uninstall", "setup", "remove", "update", "help", "readme", "documentation", "docs", "manual", "config", "configuration", "preferences", "settings", "about", "license", "legal", "terms", "privacy"]
 
     def get_functions_description(self):
         return [
 """Function: launch_application
 Module: os
-Description: Launches an application by its name in the system.
+Description: Launches an application by its name in the system, if it has a shortcut in the Start Menu.
 Arguments:
 - app_name (string): The name of the application to launch.
 """
@@ -52,20 +53,20 @@ Arguments:
 
             if ext == ".lnk" and not target.endswith(".exe"):
                 return False
-            if any(kw in target for kw in self.EXCLUDE_KEYWORDS):
+            if any(kw in target for kw in self.__EXCLUDE_KEYWORDS):
                 return False
             return True
         except Exception:
             return False
         
-    def __get_all_shortcuts(self):
+    def __get_all_shortcuts(self) -> dict:
         """Recursively retrieves all valid application shortcuts from the Start Menu directories.
         
         :return: A dictionary mapping application names to their shortcut paths.
         :rtype: dict
         """
         shortcuts = {}
-        for base_dir in self.START_MENU_DIRS:
+        for base_dir in self.__START_MENU_DIRS:
             for root, _, files in os.walk(base_dir):
                 for file in files:
                     ext = os.path.splitext(file)[1].lower()
@@ -78,7 +79,7 @@ Arguments:
         print
         return shortcuts
     
-    def __get_best_matches(self, app_name: str, shortcuts: dict, limit=5, score_threshold=80):
+    def __get_best_matches(self, app_name: str, shortcuts: dict, limit=5, score_threshold=80) -> list[tuple[str, int]]:
         """Finds the best matching application shortcuts based on the provided application name.
         
         :param app_name: The name of the application to match.
@@ -90,7 +91,7 @@ Arguments:
         :param score_threshold: The minimum score threshold for a match.
         :type score_threshold: int
         :return: A list of tuples containing the matched application names and their scores.
-        :rtype: list[tuple(str, int)]"""
+        :rtype: list[tuple[str, int]]"""
         matches = process.extract(
             query=app_name,
             choices=shortcuts.keys(),
@@ -100,7 +101,7 @@ Arguments:
 
         return [(match, score) for match, score, _ in matches if score >= score_threshold]
     
-    def _launch_application(self, app_name: str):
+    def _launch_application(self, app_name: str) -> str:
         """Launches an application by its name.
         
         :param app_name: The name of the application to launch.
@@ -110,7 +111,7 @@ Arguments:
         """
         app_query = app_name.lower().strip()
 
-        existing_dirs = [d for d in self.START_MENU_DIRS if os.path.isdir(d)]
+        existing_dirs = [d for d in self.__START_MENU_DIRS if os.path.isdir(d)]
         if not existing_dirs:
             return (
                 "Start Menu directories could not be found. "

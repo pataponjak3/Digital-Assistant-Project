@@ -1,9 +1,10 @@
-#from ..ui.gui import AssistantGUI
 from ..config.config import ModuleLoader
-from ..utils.system_prompt_generator import SystemPromptGenerator
-from ..core.backend import AssistantBackend
-from ..utils.function_handler import FunctionHandler
+from ..interfaces.llm_adapter_interface import LLMAdapter
+from ..utils.system_prompt_generator import SystemPromptGeneratorAssistant
+from .assistant_backend import AssistantBackend
+from ..utils.function_handler import FunctionHandlerAssistant
 from ..ui.assistant_gui import AssistantGUI
+from ..ui.chat_handler import AssistantChatHandler
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
@@ -12,14 +13,15 @@ def main():
     # Load functionality modules
     functionality_modules = module_loader.load_functionality_modules()
     # Initialize the system prompt and backend
-    prompt = SystemPromptGenerator(functionality_modules).generate()
+    prompt = SystemPromptGeneratorAssistant(functionality_modules).generate()
     llm_model_name = module_loader.get_llm_model()
-    llm_adapter = module_loader.load_base_module("llm", model=llm_model_name, prompt=prompt)
-    backend = AssistantBackend(llm_adapter, FunctionHandler(functionality_modules))
-    # Initialize the GUI
+    llm_adapter: LLMAdapter = module_loader.load_base_module("llm", model=llm_model_name, prompt=prompt)
+    backend = AssistantBackend(llm_adapter, FunctionHandlerAssistant(functionality_modules))
+    # Initialize the GUI & Chat Handler
+    chat_handler = AssistantChatHandler(backend, module_loader.load_base_module("ss"), module_loader.load_base_module("sr"))
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = AssistantGUI(module_loader.load_base_module("sr"), module_loader.load_base_module("ss"), backend)
+    ui = AssistantGUI(chat_handler)
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

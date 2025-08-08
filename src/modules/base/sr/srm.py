@@ -1,4 +1,4 @@
-from ...interfaces.sr import SpeechRecognizer
+from ....interfaces.sr_interface import SpeechRecognizer
 import speech_recognition as sr
 
 class SpeechRecognitionModule(SpeechRecognizer):

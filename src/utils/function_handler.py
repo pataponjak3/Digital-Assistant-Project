@@ -1,6 +1,7 @@
-from ..interfaces.functionality import Functionality
+from ..interfaces.functionality_interface import Functionality
+from ..interfaces.func_handler_interface import FunctionHandler
 
-class FunctionHandler:
+class FunctionHandlerAssistant(FunctionHandler):
     def __init__(self, modules: dict):
         self.__modules = modules
 

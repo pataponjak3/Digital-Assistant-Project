@@ -1,10 +1,15 @@
-from ..interfaces.llm_adapter import LLMAdapter
+from ..interfaces.llm_adapter_interface import LLMAdapter
+from ..interfaces.backend_interface import Backend
+from ..interfaces.func_handler_interface import FunctionHandler
 import json
 
-class AssistantBackend:
-    def __init__(self, llm_adapter: LLMAdapter, function_handler):
+class AssistantBackend(Backend):
+    def __init__(self, llm_adapter: LLMAdapter, function_handler: FunctionHandler):
         self.__llm = llm_adapter
         self.__functions = function_handler
+
+    def _llm_adapter(self) -> LLMAdapter:
+        return self.__llm
 
     def handle_user_message(self, user_message: str) -> str:
         try:

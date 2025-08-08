@@ -6,7 +6,12 @@ class RESTService(ABC):
     @property
     @abstractmethod
     def _base_url(self) -> str:
-        """Base URL for the REST service."""
+        """
+        Base URL for the REST service.
+        
+        :return: The base URL.
+        :rtype: str
+        """
         pass
 
     #@__base_url.setter
@@ -18,7 +23,12 @@ class RESTService(ABC):
     @property
     @abstractmethod
     def _api_key(self) -> str:
-        """API key for the REST service."""
+        """
+        API key for the REST service.
+
+        :return: The API key.
+        :rtype: str
+        """
         pass
 
     #@__api_key.setter
@@ -28,12 +38,16 @@ class RESTService(ABC):
     #    pass
 
     @abstractmethod
-    def _send_resquest(self, endpoint: str, params: dict) -> dict:
+    def _send_resquest(self, method:str, endpoint: str, **kwargs) -> dict:
         """
         Send a request to the REST service.
 
+        :param method: HTTP method (GET, POST, etc.).
+        :type method: str
         :param endpoint: The API endpoint to send the request to.
-        :param params: The parameters to include in the request.
+        :type endpoint: str
+        :param kwargs: Additional parameters for the request.
         :return: The response from the REST service.
+        :rtype: dict
         """
         pass

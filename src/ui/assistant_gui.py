@@ -9,19 +9,40 @@
 
 
 from PyQt5 import QtCore, QtWidgets
-from .mic_settings_interface import Ui_MicSettingsWindow
-from ..config.config import ModuleLoader
-from ..interfaces.sr import SpeechRecognizer
-from ..interfaces.ss import SpeechSynthesizer
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtCore import QObject, QRunnable, QThreadPool, pyqtSignal, pyqtSlot
+from .mic_settings_interface import MicSettingsWindow
+from ..interfaces.chat_handler_interface import ChatHandler
 
+class _GenericWorker(QRunnable):
+    class _GenericWorkerSignals(QObject):
+        finished = pyqtSignal(object)
+
+    def __init__(self, func, *args, **kwargs):
+        super().__init__()
+        self.__signals = self._GenericWorkerSignals()
+        self.__func = func
+        self.__args = args
+        self.__kwargs = kwargs
+    
+    def connect_finished_signal(self, finished_signal):
+        self.__signals.finished.connect(finished_signal)
+
+    @pyqtSlot()
+    def run(self):
+        result = self.__func(*self.__args, **self.__kwargs)
+        self.__signals.finished.emit(result)
 
 class AssistantGUI(object):
-    def __init__(self, recognizer: SpeechRecognizer, synthesizer: SpeechSynthesizer, backend):
+
+    __threadpool = QThreadPool()
+    __allow_input = True
+    
+    def __init__(self, chat_handler: ChatHandler):
         super().__init__()
-        self.__recognizer = recognizer
-        self.__synthesizer = synthesizer
-        self.__backend = backend
-    def setupUi(self, MainWindow):
+        self.__chat_handler = chat_handler
+
+    def setupUi(self, MainWindow: QMainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -34,21 +55,22 @@ class AssistantGUI(object):
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(0, 540, 721, 20))
         self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit.returnPressed.connect(self.send_text_message)
+        self.lineEdit.returnPressed.connect(self.__send_message)
         #Send text button
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(720, 540, 41, 23))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.send_text_message)
+        self.pushButton.clicked.connect(self.__send_message)
         #Speak button
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(760, 540, 41, 23))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_2.clicked.connect(self.send_voice_message)
+        self.pushButton_2.clicked.connect(lambda: self.__send_message(True))
         #Checkbox for enabling speech output
         self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox.setGeometry(QtCore.QRect(0, 0, 131, 17))
         self.checkBox.setObjectName("checkBox")
+        self.checkBox.stateChanged.connect(self.__on_tts_checkbox_changed)
         MainWindow.setCentralWidget(self.centralwidget)
         #Menu bar for settings
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -62,14 +84,14 @@ class AssistantGUI(object):
         MainWindow.setStatusBar(self.statusbar)
         self.actionMicrophone_Settings = QtWidgets.QAction(MainWindow)
         self.actionMicrophone_Settings.setObjectName("actionMicrophone_Settings")
-        self.actionMicrophone_Settings.triggered.connect(self.open_mic_settings)
+        self.actionMicrophone_Settings.triggered.connect(self.__open_mic_settings)
         self.menuSettings.addAction(self.actionMicrophone_Settings)
         self.menubar.addAction(self.menuSettings.menuAction())
 
-        self.retranslateUi(MainWindow)
+        self.__retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def retranslateUi(self, MainWindow):
+    def __retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Digital Assistant"))
         self.lineEdit.setPlaceholderText(_translate("MainWindow", "Type your message here..."))
@@ -79,36 +101,58 @@ class AssistantGUI(object):
         self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
         self.actionMicrophone_Settings.setText(_translate("MainWindow", "Microphone Settings"))
 
-    def open_mic_settings(self):
-        self.mic_settings_window = QtWidgets.QDialog()
-        self.mic_settings_ui = Ui_MicSettingsWindow(self.__recognizer)
-        self.mic_settings_ui.setupUi(self.mic_settings_window)
-        self.mic_settings_window.exec_()
+    def __open_mic_settings(self):
+        self.__mic_settings_window = QtWidgets.QDialog()
+        self.__mic_settings_ui = MicSettingsWindow(self.__chat_handler._sr())
+        self.__mic_settings_ui.setupUi(self.__mic_settings_window)
+        self.__mic_settings_window.exec_()
 
+    def __send_message(self, voiced: bool = False):
+        """
+        Send a message either as text or voice based on the 'voiced' parameter.
+        """
+        if self.__allow_input:
+            if voiced:
+                worker = _GenericWorker(self.__chat_handler.recognize_voice)
+                worker.connect_finished_signal(self.__handle_chat_message)
+                self.__threadpool.start(worker)
+            else:
+                user_text = self.lineEdit.text().strip()
+                self.__handle_chat_message(user_text)
 
-    def send_text_message(self):
-        user_text = self.lineEdit.text().strip()
-        self.send_message(user_text)
-
-
-    def send_voice_message(self):
-        spoken_text = self.__recognizer.recognize_speech()
-        self.send_message(spoken_text)
-
-    def send_message(self, user_message):
+    def __handle_chat_message(self, user_message: str | None):
         if user_message:
-            self.update_chat(f"User -> {user_message}")
-            self.lineEdit.clear()
-            response = self.__backend.handle_user_message(user_message)
-            self.update_chat(f"DA -> {response}")
-            self.say_text(response)
-    
-    def update_chat(self, message):
-        self.textBrowser.append(message)
+            self.__handle_user_message(user_message)
+            self.__set_input_enabled(False)
 
-    def say_text(self, text):
+            worker = _GenericWorker(self.__chat_handler.handle_chat_message, user_message)
+            worker.connect_finished_signal(self.__handle_da_response)
+            self.__threadpool.start(worker)
+
+    def __handle_user_message(self, message):
+        self.__update_chat(f"User -> {message}")
+        self.lineEdit.clear()
+
+    def __handle_da_response(self, response):
+        self.__update_chat(f"DA -> {response}")
+        self.__set_input_enabled()
         if self.checkBox.isChecked():
-            self.__synthesizer.synthesize_speech(text)
+            worker = _GenericWorker(self.__chat_handler.start_speech, response)
+            self.__threadpool.start(worker)
+    
+    def __update_chat(self, message):
+        self.textBrowser.append(message)
+    
+    def __set_input_enabled(self, enabled: bool = True):
+        self.__allow_input = enabled
+        self.lineEdit.setEnabled(enabled)
+        self.pushButton.setEnabled(enabled)
+        self.pushButton_2.setEnabled(enabled)
+    
+    def __on_tts_checkbox_changed(self, state):
+        if state == QtCore.Qt.CheckState.Unchecked:
+            worker = _GenericWorker(self.__chat_handler.stop_speech)
+            self.__threadpool.start(worker)
 
 
 

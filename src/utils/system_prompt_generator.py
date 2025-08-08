@@ -1,11 +1,11 @@
-from ..interfaces.functionality import Functionality
+from ..interfaces.functionality_interface import Functionality
+from ..interfaces.sys_prompt_interface import SystemPromptGenerator
 
-class SystemPromptGenerator:
+class SystemPromptGeneratorAssistant(SystemPromptGenerator):
     def __init__(self, modules: dict):
         self.__modules = modules
         
     def generate(self) -> str:
-        
         prompt = (
             "You are a digital assistant that can call predefined functions when they match the user's request.\n\n"
             "IMPORTANT RULES:\n"
