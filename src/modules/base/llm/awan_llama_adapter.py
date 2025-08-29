@@ -14,7 +14,6 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
         self.__model = model
         self.__system_prompt = prompt
         self.__messages = [{"role": "system", "content": self.__system_prompt}]  # Initial conversation history
-        print("=====" + self.__system_prompt + "\n=====" + self.__model)
 
     def _base_url(self):
         return self.__base_url
@@ -65,16 +64,17 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
                 'Content-Type': 'application/json',
                 'Authorization': f"Bearer {self.__api_key}"
             }
-
-            result = self._send_resquest("POST", self.__chat_completions_endpoint, headers=headers, data=json.dumps(payload))
             
-            print("===== result =====" + str(result))
+            try:
+                result = self._send_resquest("POST", self.__chat_completions_endpoint, headers=headers, data=json.dumps(payload))
+            except Exception as e:
+                print(f"ERROR: AwanLlama chat call failed: {e}")
+                return "I’m having trouble generating a response right now."
+            
             input = result["choices"][0]["message"]["content"]
 
-        # Add assistant message to conversation history
+        # Add assistant message to conversation history, but not function calls
         if not is_json(input):
             self.__messages.append({"role": "assistant", "content": input})
-
-        print("=====" + input)
 
         return input

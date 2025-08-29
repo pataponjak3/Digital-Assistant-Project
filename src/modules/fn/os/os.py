@@ -3,7 +3,6 @@ import os
 import subprocess
 from win32com.client import Dispatch
 from rapidfuzz import process, fuzz
-from typing import Tuple
 
 class OSFunctionality(Functionality):
     # Define common Start Menu directories
@@ -141,4 +140,4 @@ Arguments:
             return f"Launched '{match_name.title()}'."
         else:
             options = "\n".join([f"- {match[0].title()} ({match[1]}% match)" for match in high_matches])
-            return f"Multiple possible matches found:\n{options}\nPlease specify which one you meant."
+            return f"Multiple possible matches found:{options}\n\nPlease specify which one you meant."

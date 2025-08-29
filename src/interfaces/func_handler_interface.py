@@ -1,9 +1,22 @@
 from abc import ABC, abstractmethod
+from ..interfaces.functionality_interface import Functionality
+from typing import Callable
 
 class FunctionHandler(ABC):
 
+    @property
     @abstractmethod
-    def call_function(self, module_name: str, function_name: str, arguments: dict) -> str:
+    def _modules(self) -> dict[str, Functionality]:
+        """
+        Dictionary of modules available for function calls.
+
+        :return: Dictionary mapping module names to Functionality instances.
+        :rtype: dict[str, Functionality]
+        """
+        pass
+
+    @abstractmethod
+    def call_function(self, module_name: str, function_name: str, arguments: dict) -> Callable[[str, dict], Callable[[dict], str]]:
         """
         Call a function from a specific module with the given arguments.
 

@@ -1,6 +1,7 @@
 from ....interfaces.rest_service_interface import RESTService
 from ....interfaces.functionality_interface import Functionality
 from ....config.config import APIKeyManager
+from typing import Callable
 import requests, datetime
 
 class MeteorologyFunctionality(RESTService, Functionality):
@@ -48,7 +49,7 @@ Description: Get current air pollution data for a location.
 Arguments: Same as get_current_weather."""
         ]
 
-    def execute_function(self, name: str, args: dict):
+    def execute_function(self, name: str, args: dict) -> Callable[[dict], str]:
         return getattr(self, f"_{name}")(**args)
     
     def __resolve_coordinates(self, **kwargs) -> dict:

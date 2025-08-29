@@ -1,13 +1,24 @@
 import importlib
 import json
 import os
+from dotenv import load_dotenv
+from ..interfaces.functionality_interface import Functionality
+from .modules import LLM_REGISTRY
+from typing import Type, Any
 
 class ModuleLoader:
     def __init__(self, config_path="src/config/config.json"):
         with open(os.path.abspath(config_path), "r") as file:
-            self.config: dict = json.load(file)
+            self.__config: dict = json.load(file)
 
-    def _load_module(self, config_part: dict, module_name: str, **kwargs):
+        llm_name = self.__config["modules"]["base"]["llm"]["model"]
+
+        if llm_name in LLM_REGISTRY:
+            self.__config["modules"]["base"]["llm"] = LLM_REGISTRY[llm_name]
+        else:
+            raise ValueError(f"Unknown LLM model: {llm_name}")
+
+    def _load_module(self, config_part: dict, module_name: str, **kwargs) -> Type:
         module_info = config_part.get(module_name)
         if not module_info:
             raise ValueError(f"No implementation specified for {module_name} in config.")
@@ -26,9 +37,9 @@ class ModuleLoader:
         except AttributeError:
             raise ImportError(f"Class {class_name} not found in {file_path}!")
     
-    def load_functionality_modules(self):
+    def load_functionality_modules(self) -> dict[str, Functionality]:
         modules = {}
-        modules_info = self.config.get("modules").get("fn", {})
+        modules_info = self.__config.get("modules").get("fn", {})
         for module_name in modules_info:
             try:
                 modules[module_name] = self._load_module(modules_info, module_name)
@@ -38,33 +49,27 @@ class ModuleLoader:
         return modules
     
     def load_base_module(self, module_name, **kwargs):
-        base_modules = self.config.get("modules").get("base")
+        base_modules = self.__config.get("modules").get("base")
         if module_name not in base_modules:
             raise ValueError(f"Base module {module_name} not found in config.")
         return self._load_module(base_modules, module_name, **kwargs)
     
     def get_llm_model(self) -> str:
-        llm_config = self.config.get("modules").get("base").get("llm")
+        llm_config = self.__config.get("modules").get("base").get("llm")
         if not llm_config:
             raise ValueError("LLM configuration not found in config.")
         return llm_config.get("model", "default_model")
 
 
 class APIKeyManager:
-    def __init__(self, config_path="src/config/config.json"):
-        self._keys = {}
-        self._load_keys(config_path)
-    
-    def _load_keys(self, config_path: str):
-        try:
-            with open(os.path.abspath(config_path), "r") as file:
-                config = json.load(file)
-                self._keys = config.get("apiKeys", {}) #Optional
-        except (FileNotFoundError, json.JSONDecodeError) as e:
-            raise ValueError(f"Error loading API keys: {e}")
+    def __init__(self, env_path=".env"):
+        load_dotenv(dotenv_path=env_path)
         
     def get_key(self, service_name:str) -> str:
-        key = self._keys.get(service_name.lower())
+        env_var = f"{service_name.upper()}_KEY"
+        key = os.getenv(env_var)
+
         if not key:
-            raise ValueError(f"No API key found for {service_name}")
-        return key 
+            raise ValueError(f"No API key found for {service_name} (expected {env_var})")
+
+        return key

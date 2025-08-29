@@ -3,7 +3,7 @@ from typing import Optional
 
 class SpeechSynthesizer(ABC):
     @abstractmethod
-    def synthesize_speech(self, text: str) -> Optional[str]:
+    def synthesize_speech(self, text: str):
         """Method that synthesizes speech"""
 
     @abstractmethod

@@ -36,7 +36,7 @@ class MicSettingsWindow(object):
         self.gridLayout.addWidget(self.comboBoxMicrophone, 2, 0, 1, 1)
 
         self.__populate_microphone_list()
-        self.buttonBox.clicked.connect(self.__apply_microphone_selection)  # type: ignore
+        self.buttonBox.clicked.connect(lambda: self.__apply_microphone_selection(MicSettingsWindow))  # type: ignore
 
         self.__retranslateUi(MicSettingsWindow)
         self.buttonBox.accepted.connect(MicSettingsWindow.accept) # type: ignore
@@ -54,10 +54,10 @@ class MicSettingsWindow(object):
         for index, mic in microphones.items():
             self.comboBoxMicrophone.addItem(f"{index}: {mic}", index)
     
-    def __apply_microphone_selection(self):
+    def __apply_microphone_selection(self, MicSettingsWindow: QDialog):
         selected_index = self.comboBoxMicrophone.currentData()
         self.__recognizer.select_microphone(selected_index)
-        QtWidgets.QMessageBox.information(self, "Microphone Selected", f"Microphone {selected_index} selected!")
+        QtWidgets.QMessageBox.information(MicSettingsWindow, "Microphone Selected", f"Microphone {selected_index} selected!")
 
 if __name__ == "__main__":
     import sys

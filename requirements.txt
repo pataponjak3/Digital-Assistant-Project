@@ -9,6 +9,8 @@ pyaudio==0.2.14			# Required for live audio processing
 # Text-to-Speech (TTS)  
 pyttsx3==2.98            # Offline TTS  
 
+openai # For OpenAI API access (e.g., GPT-4)
+
 rapidfuzz==3.13.0        # For fuzzy string matching (e.g., command recognition)
 
 # Automation (for launching applications & searching files)  

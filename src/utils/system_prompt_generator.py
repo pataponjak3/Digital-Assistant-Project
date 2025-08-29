@@ -1,9 +1,12 @@
 from ..interfaces.functionality_interface import Functionality
 from ..interfaces.sys_prompt_interface import SystemPromptGenerator
 
-class SystemPromptGeneratorAssistant(SystemPromptGenerator):
-    def __init__(self, modules: dict):
+class AssistantSystemPromptGenerator(SystemPromptGenerator):
+    def __init__(self, modules: dict[str, Functionality]):
         self.__modules = modules
+    
+    def _modules(self) -> dict[str, Functionality]:
+        return self.__modules
         
     def generate(self) -> str:
         prompt = (

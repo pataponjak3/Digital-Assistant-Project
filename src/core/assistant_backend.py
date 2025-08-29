@@ -6,10 +6,13 @@ import json
 class AssistantBackend(Backend):
     def __init__(self, llm_adapter: LLMAdapter, function_handler: FunctionHandler):
         self.__llm = llm_adapter
-        self.__functions = function_handler
+        self.__function_handler = function_handler
 
     def _llm_adapter(self) -> LLMAdapter:
         return self.__llm
+    
+    def _function_handler(self) -> FunctionHandler:
+        return self.__function_handler
 
     def handle_user_message(self, user_message: str) -> str:
         try:
@@ -19,7 +22,7 @@ class AssistantBackend(Backend):
                 call = json.loads(response)
                 if "function" in call and "arguments" in call:
                     try:
-                        message = self.__functions.call_function(call["module"], call["function"], call["arguments"])
+                        message = self.__function_handler.call_function(call["module"], call["function"], call["arguments"])
                         print("I executed call function")
                         final_response = self.__llm.chat(message, False)
                         return final_response

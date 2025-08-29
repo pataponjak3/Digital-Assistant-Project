@@ -10,9 +10,7 @@
                 "class": "SpeechSynthesisModule"
             },
             "llm": {
-                "filePath": "base.llm.llama_adapter",
-                "class": "AwanLlamaAdapter",
-                "model": "Meta-Llama-3.1-8B-Instruct"
+                "model": "Gemini-2.0-Flash"
             }
         },
         "fn": {
@@ -25,9 +23,5 @@
                 "class": "OSFunctionality"
             }
         }
-    },
-    "apiKeys":{
-        "openweathermap": "be55fb2c6e62c76085b023e035c8348b",
-		"awanllm": "c7dac548-4d8f-4296-9c68-5afb9390e02e"
-	}
+    }
 }

@@ -2,20 +2,19 @@ from ....interfaces.sr_interface import SpeechRecognizer
 import speech_recognition as sr
 
 class SpeechRecognitionModule(SpeechRecognizer):
-    def __init__(self):
-        self.recognizer = sr.Recognizer()
-        self.recognizer.dynamic_energy_threshold = True  # Enable dynamic energy thresholding
-        self.microphone = sr.Microphone()
-        self.selected_microphone_index = None
-    
+
+    __recognizer = sr.Recognizer()
+    __recognizer.dynamic_energy_threshold = True  # Enable dynamic energy thresholding
+    __microphone = sr.Microphone()
+
     def recognize_speech(self):
-        with self.microphone as source:
+        with self.__microphone as source:
             print("Listening...")
-            self.recognizer.adjust_for_ambient_noise(source)
-            audio = self.recognizer.listen(source)
+            self.__recognizer.adjust_for_ambient_noise(source)
+            audio = self.__recognizer.listen(source)
         
         try:
-            text = self.recognizer.recognize_google(audio)
+            text = self.__recognizer.recognize_google(audio)
             print("Recognized:", text)
             return text
         except sr.UnknownValueError:
@@ -30,8 +29,7 @@ class SpeechRecognitionModule(SpeechRecognizer):
     
     def select_microphone(self, index):
         try:
-            self.microphone = sr.Microphone(device_index=index)
-            self.selected_microphone = index
+            self.__microphone = sr.Microphone(index)
         except IndexError:
             print("Invalid microphone index selected.")
 

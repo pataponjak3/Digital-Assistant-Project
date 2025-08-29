@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Callable
 
 class Functionality(ABC):
     """Interface for functionalities of the DA"""
@@ -14,7 +15,7 @@ class Functionality(ABC):
         """
     
     @abstractmethod
-    def execute_function(self, name:str, args:dict):
+    def execute_function(self, name:str, args:dict) -> Callable[[dict], str]:
         """
         Execute the function with the given name and arguments.
         
@@ -22,6 +23,6 @@ class Functionality(ABC):
         :type name: str
         :param args: The arguments to pass to the function.
         :type args: dict
-        :return: The result of the function's execution.
-        :rtype: Any
+        :return: The result of the function's execution, which should be a string containing the response for the user.
+        :rtype: str
         """
