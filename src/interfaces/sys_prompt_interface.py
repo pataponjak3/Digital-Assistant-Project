@@ -16,10 +16,14 @@ class SystemPromptGenerator(ABC):
 
 
     @abstractmethod
-    def generate(self) -> str:
+    def generate(self, supports_function_calls: bool) -> str:
         """
         Generate the system prompt based on the functionalities available in the system.
-        
+        If the LLM supports function calls, don't include function descriptions in the prompt.
+
+
+        :param supports_function_calls: Boolean indicating if the LLM supports function calls with specific role.
+        :type supports_function_calls: bool
         :return: The generated system prompt.
         :rtype: str
         """

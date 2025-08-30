@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 class LLMAdapter(ABC):
+
     @abstractmethod
     def chat(self, input: str, is_user_message: bool=True) -> str:
         """

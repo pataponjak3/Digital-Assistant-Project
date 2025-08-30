@@ -3,6 +3,7 @@ import json
 from openai import OpenAI #Although this module utilizes a REST API, we use the official OpenAI Python client for simplicity.
 from ....config.config import APIKeyManager
 from ....interfaces.llm_adapter_interface import LLMAdapter
+from typing import Optional
 
 class GeminiAdapter(LLMAdapter):
     __client = OpenAI(
@@ -10,9 +11,10 @@ class GeminiAdapter(LLMAdapter):
         base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
     )
 
-    def __init__(self, model: str, prompt: str):
+    def __init__(self, model: str, prompt: str, tools: Optional[list]=None):
         self.__model = model
         self.__system_prompt = prompt
+        self.__tools = tools if tools is not None else []
         self.__messages = [{"role": "system", "content": self.__system_prompt}]
 
     def chat(self, input: str, is_user_message: bool=True) -> str:
@@ -36,6 +38,7 @@ class GeminiAdapter(LLMAdapter):
                     max_completion_tokens=1024,
                     messages=self.__messages
                 )
+
 
                 input = result.choices[0].message.content
 

@@ -12,11 +12,16 @@ def main():
     module_loader = ModuleLoader()
     # Load functionality modules
     functionality_modules = module_loader.load_functionality_modules()
+    tools = None
+    if module_loader.llm_suports_call_functions():
+        tools = []
+        for module in functionality_modules.values():
+            tools.extend(module.get_functions_schema())
     # Initialize the system prompt and backend
-    prompt = AssistantSystemPromptGenerator(functionality_modules).generate()
+    prompt = AssistantSystemPromptGenerator(functionality_modules).generate(module_loader.llm_suports_call_functions())
     print("====== \n" + prompt + "\n======")
     llm_model_name = module_loader.get_llm_model()
-    llm_adapter: LLMAdapter = module_loader.load_base_module("llm", model=llm_model_name, prompt=prompt)
+    llm_adapter: LLMAdapter = module_loader.load_base_module("llm", model=llm_model_name, prompt=prompt, tools= tools)
     backend = AssistantBackend(llm_adapter, AssistantFunctionHandler(functionality_modules))
     # Initialize the GUI & Chat Handler
     chat_handler = AssistantChatHandler(backend, module_loader.load_base_module("ss"), module_loader.load_base_module("sr"))

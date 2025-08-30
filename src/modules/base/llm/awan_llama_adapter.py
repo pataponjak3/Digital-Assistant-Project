@@ -4,15 +4,17 @@ import json
 from ....config.config import APIKeyManager
 from ....interfaces.llm_adapter_interface import LLMAdapter
 from ....interfaces.rest_service_interface import RESTService
+from typing import Optional
 
 class AwanLlamaAdapter(RESTService, LLMAdapter):
     __base_url = "https://api.awanllm.com"
     __api_key = APIKeyManager().get_key("awanllm")
     __chat_completions_endpoint = "v1/chat/completions"
 
-    def __init__(self, model: str, prompt: str):
+    def __init__(self, model: str, prompt: str, tools: Optional[list]=None):
         self.__model = model
         self.__system_prompt = prompt
+        self.__tools = tools if tools is not None else []
         self.__messages = [{"role": "system", "content": self.__system_prompt}]  # Initial conversation history
 
     def _base_url(self):

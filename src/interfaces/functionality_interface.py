@@ -9,9 +9,20 @@ class Functionality(ABC):
         """
         Definition of the functions' description.
         This is an important part of each functionality, because this will demonstrate to the DA how the function works.
+        Important for LLMs that do not support function calls natively.
 
         :return: A list of strings, each containing the description of a function.
         :rtype: list[str]
+        """
+
+    def get_functions_schema(self) -> list[dict]:
+        """
+        Definition of the functions' schema.
+        This is an important part of each functionality, because this will demonstrate to the DA how the function works.
+        Important for LLMs that support function calls natively.
+
+        :return: A list of dictionaries, each containing the schema of a function.
+        :rtype: list[dict]
         """
     
     @abstractmethod

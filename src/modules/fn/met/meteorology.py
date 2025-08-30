@@ -48,6 +48,262 @@ Module: meteorology
 Description: Get current air pollution data for a location.
 Arguments: Same as get_current_weather."""
         ]
+    
+    def get_functions_schema(self) -> list[dict]:
+        return [
+            {
+                "type": "function",
+                "function": {
+                    "name": "meteorology_get_current_weather",
+                    "description": "Get the current weather for a location.",
+                    "parameters": {
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "city": {
+                                        "type": "string",
+                                        "description": "City name."
+                                    },
+                                    "state_code": {
+                                        "type": "string",
+                                        "description": "State code. Only for USA."
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "description": "Country code. Follows ISO 3166."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["city"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "lat": {
+                                        "type": "number",
+                                        "description": "Latitude. Goes from -90 to 90."
+                                    },
+                                    "lon": {
+                                        "type": "number",
+                                        "description": "Longitude. Goes from -180 to 180."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["lat", "lon"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "zip": {
+                                        "type": "string",
+                                        "description": "Postal code."
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "description": "Country code. Follows ISO 3166."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["zip", "country_code"]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_forecast",
+                    "description": "Get a 5-day forecast in 3-hour intervals.",
+                    "parameters": {
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "city": {
+                                        "type": "string",
+                                        "description": "City name."
+                                    },
+                                    "state_code": {
+                                        "type": "string",
+                                        "description": "State code. Only for USA."
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "description": "Country code. Follows ISO 3166."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["city"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "lat": {
+                                        "type": "number",
+                                        "description": "Latitude. Goes from -90 to 90."
+                                    },
+                                    "lon": {
+                                        "type": "number",
+                                        "description": "Longitude. Goes from -180 to 180."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["lat", "lon"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "zip": {
+                                        "type": "string",
+                                        "description": "Postal code."
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "description": "Country code. Follows ISO 3166."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["zip", "country_code"]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_air_pollution",
+                    "description": "Get current air pollution data for a location.",
+                    "parameters": {
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "city": {
+                                        "type": "string",
+                                        "description": "City name."
+                                    },
+                                    "state_code": {
+                                        "type": "string",
+                                        "description": "State code. Only for USA."
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "description": "Country code. Follows ISO 3166."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["city"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "lat": {
+                                        "type": "number",
+                                        "description": "Latitude. Goes from -90 to 90."
+                                    },
+                                    "lon": {
+                                        "type": "number",
+                                        "description": "Longitude. Goes from -180 to 180."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["lat", "lon"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "zip": {
+                                        "type": "string",
+                                        "description": "Postal code."
+                                    },
+                                    "country_code": {
+                                        "type": "string",
+                                        "description": "Country code. Follows ISO 3166."
+                                    },
+                                    "units": {
+                                        "type": "string",
+                                        "description": "Temperature unit.",
+                                        "enum": ["standard", "metric", "imperial"]
+                                    },
+                                    "lang": {
+                                        "type": "string",
+                                        "description": "Language code for weather description (e.g. 'en')"
+                                    }
+                                },
+                                "required": ["zip", "country_code"]
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
 
     def execute_function(self, name: str, args: dict) -> Callable[[dict], str]:
         return getattr(self, f"_{name}")(**args)

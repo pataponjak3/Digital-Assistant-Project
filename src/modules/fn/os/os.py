@@ -30,6 +30,27 @@ Arguments:
 - file_name (string): The name of the file to find.
 """
 
+    def get_functions_schema(self):
+        return [
+            {
+                "type": "function",
+                "function": {
+                    "name": "os_launch_application",
+                    "description": "Launches an application by its name in the system, if it has a shortcut in the Start Menu.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "app_name": {
+                                "type": "string",
+                                "description": "The name of the application to launch.",
+                            }
+                        },
+                        "required": ["app_name"]
+                    }
+                }
+            }
+        ]
+
     def execute_function(self, name: str, args: dict):
         return getattr(self, f"_{name}")(**args)
     

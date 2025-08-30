@@ -59,6 +59,12 @@ class ModuleLoader:
         if not llm_config:
             raise ValueError("LLM configuration not found in config.")
         return llm_config.get("model", "default_model")
+    
+    def llm_suports_call_functions(self) -> bool:
+        llm_config = self.__config.get("modules").get("base").get("llm")
+        if not llm_config:
+            raise ValueError("LLM configuration not found in config.")
+        return llm_config.get("suportsFunctionCalls", False)
 
 
 class APIKeyManager:
