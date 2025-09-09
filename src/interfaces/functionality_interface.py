@@ -26,7 +26,7 @@ class Functionality(ABC):
         """
     
     @abstractmethod
-    def execute_function(self, name:str, args:dict) -> Callable[[dict], str]:
+    def execute_function(self, name:str, args:dict, supports_function_calls: bool) -> Callable[[dict], str | dict]:
         """
         Execute the function with the given name and arguments.
         
@@ -34,6 +34,6 @@ class Functionality(ABC):
         :type name: str
         :param args: The arguments to pass to the function.
         :type args: dict
-        :return: The result of the function's execution, which should be a string containing the response for the user.
-        :rtype: str
+        :return: The result of the function's execution, which should be a string with the response for the user (it can also be a dictionary in certain cases).
+        :rtype: str | dict
         """

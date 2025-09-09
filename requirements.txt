@@ -22,4 +22,4 @@ rapidfuzz==3.13.0        # For fuzzy string matching (e.g., command recognition)
 PyQt5
 
 # Testing  
-#pytest==8.0.0           # For writing unit tests  
+pytest==8.0.0           # For writing unit tests  

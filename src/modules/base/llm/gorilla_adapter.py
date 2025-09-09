@@ -6,10 +6,10 @@ from ....interfaces.llm_adapter_interface import LLMAdapter
 from ....types.types import LLMResponse
 from typing import Optional
 
-class GeminiAdapter(LLMAdapter):
+class GorillaAdapter(LLMAdapter):
     __client = OpenAI(
-        api_key = APIKeyManager().get_key("gemini"),
-        base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+        api_key = APIKeyManager().get_key("gorilla"),
+        base_url = "http://luigi.millennium.berkeley.edu:8000/v1"
     )
 
     def __init__(self, model: str, prompt: str, tools: Optional[list]=None):
@@ -29,23 +29,20 @@ class GeminiAdapter(LLMAdapter):
                     temperature=0.7,
                     top_p=0.9,
                     messages=self.__messages,
-                    tools=self.__tools if supports_function_calls else None,
+                    functions=self.__tools if supports_function_calls else None,
                     tool_choice="auto" if (supports_function_calls and self.__tools) else "none"
                 )
             except Exception as e:
-                print(f"ERROR: Gemini chat call failed: {e}")
+                print(f"ERROR: Gorilla chat call failed: {e}")
                 return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
             
             choice = result.choices[0].message
 
-            print(choice)
-
             # --- A) Structured function call (tool_calls present) ---
-            if supports_function_calls and choice.tool_calls:
-                self.__messages.append(choice) # Store tool_calls in message history
-                tool_call = choice.tool_calls[0]
-                module_name, function_name = tool_call.function.name.split("_", 1)
-                args = json.loads(tool_call.function.arguments)
+            if supports_function_calls and choice.function_call:
+                self.__messages.append(choice) # Store da tool calls in message history
+                module_name, function_name = choice.function_call.name.split("_", 1)
+                args = choice.function_call.arguments
                 # Do NOT append assistant/tool message yet, Backend will push result
                 return LLMResponse(
                     type="function_call",
@@ -97,8 +94,10 @@ class GeminiAdapter(LLMAdapter):
                         tool_choice="auto" if (supports_function_calls and self.__tools) else "none"   
                     )
                 except Exception as e:
-                    print(f"ERROR: Gemini chat call failed after tool input: {e}")
+                    print(f"ERROR: Gorilla chat call failed after tool input: {e}")
                     return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
+
+                print(result)
                 choice = result.choices[0].message
                 self.__messages.append({"role": "assistant", "content": choice.content})
                 return LLMResponse(type="response", content=choice.content)

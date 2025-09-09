@@ -18,7 +18,7 @@ class ModuleLoader:
         else:
             raise ValueError(f"Unknown LLM model: {llm_name}")
 
-    def _load_module(self, config_part: dict, module_name: str, **kwargs) -> Type:
+    def _load_module(self, config_part: dict, module_name: str, **kwargs):
         module_info = config_part.get(module_name)
         if not module_info:
             raise ValueError(f"No implementation specified for {module_name} in config.")

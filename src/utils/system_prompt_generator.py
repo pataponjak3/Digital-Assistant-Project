@@ -37,6 +37,8 @@ class AssistantSystemPromptGenerator(SystemPromptGenerator):
                 "For example, \"What’s the weather in Lisbon?\" would match a function.\n\n"
                 "If the user refers to earlier data or asks follow-up questions about information you already returned (e.g., “What can you tell me about this data?”), answer NATURALLY and DO NOT generate a JSON object.\n\n"
             )
+        else:
+            prompt += ("You shouldn't talk about functions or tools unless the user specifically asks about them. You shouldn't also tell the user to execute the functions, for they are internal to the system.\n\n")
         
         prompt += (
             "Never reflect on how you should have responded unless told otherwise. Focus on answering the user’s latest question or request clearly and helpfully, using the information you already provided if relevant."

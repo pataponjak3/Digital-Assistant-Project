@@ -20,13 +20,16 @@ class MeteorologyFunctionality(RESTService, Functionality):
         return self.__base_url
 
     def _send_resquest(self, method:str, endpoint: str, **kwargs) -> dict:
-        response = requests.request(
-            method=method,
-            url = f"{self.__base_url}/{endpoint}",
-            params=kwargs.get('params')
-        )
-        response.raise_for_status()
-        return response.json()
+        try: 
+            response = requests.request(
+                method=method,
+                url = f"{self.__base_url}/{endpoint}",
+                params=kwargs.get('params')
+            )
+            response.raise_for_status()
+            return response.json()
+        except requests.HTTPError as e:
+            return {"error": f"HTTP error occurred: {e.response.status_code} - {e.response.text}"}
     
     def get_functions_description(self) -> list[str]:
         return [
@@ -138,7 +141,7 @@ Arguments: Same as get_current_weather."""
             {
                 "type": "function",
                 "function": {
-                    "name": "get_forecast",
+                    "name": "meteorology_get_forecast",
                     "description": "Get a 5-day forecast in 3-hour intervals.",
                     "parameters": {
                         "oneOf": [
@@ -222,7 +225,7 @@ Arguments: Same as get_current_weather."""
             {
                 "type": "function",
                 "function": {
-                    "name": "get_air_pollution",
+                    "name": "meteorology_get_air_pollution",
                     "description": "Get current air pollution data for a location.",
                     "parameters": {
                         "oneOf": [
@@ -305,8 +308,8 @@ Arguments: Same as get_current_weather."""
             }
         ]
 
-    def execute_function(self, name: str, args: dict) -> Callable[[dict], str]:
-        return getattr(self, f"_{name}")(**args)
+    def execute_function(self, name: str, args: dict, supports_function_calls: bool) -> Callable[[dict], str]:
+        return getattr(self, f"_{name}")(supports_function_calls, **args)
     
     def __resolve_coordinates(self, **kwargs) -> dict:
         """Get the geocoding information for a given location if not provided directly."""
@@ -319,11 +322,12 @@ Arguments: Same as get_current_weather."""
                 "appid": self.__api_key
             }
             data = self._send_resquest("GET", endpoint, params = params)
-            print(data)
+            if hasattr(data, "error"):
+                raise ConnectionError(data["error"])
             if isinstance(data, dict) and data.get("cod") == 404:
-                raise ValueError("No results found for the given location.")
+                raise LookupError("No results found for the given location.")
             if not isinstance(data, list) or not data:
-                raise ValueError("Unexpected or empty response from geocoding service.")
+                raise RuntimeError("Unexpected or empty response from geocoding service.")
             return {
                 "lat": kwargs["lat"],
                 "lon": kwargs["lon"],
@@ -339,10 +343,12 @@ Arguments: Same as get_current_weather."""
                 "appid": self.__api_key
             }
             data = self._send_resquest("GET", endpoint, params = params)
+            if hasattr(data, "error"):
+                raise ConnectionError(data["error"])
             if isinstance(data, dict) and data.get("cod") == 404:
-                raise ValueError("No results found for the given location.")
+                raise LookupError("No results found for the given location.")
             if not isinstance(data, list) or not data:
-                raise ValueError("Unexpected or empty response from geocoding service.")
+                raise RuntimeError("Unexpected or empty response from geocoding service.")
             return {
                 "lat": data["lat"],
                 "lon": data["lon"],
@@ -363,11 +369,13 @@ Arguments: Same as get_current_weather."""
                 "limit": 1,
                 "appid": self.__api_key
             }
-            self._send_resquest("GET", endpoint, params = params)
+            data = self._send_resquest("GET", endpoint, params = params)
+            if hasattr(data, "error"):
+                raise ConnectionError(data["error"])
             if isinstance(data, dict) and data.get("cod") == 404:
-                raise ValueError("No results found for the given location.")
+                raise LookupError("No results found for the given location.")
             if not isinstance(data, list) or not data:
-                raise ValueError("Unexpected or empty response from geocoding service.")
+                raise RuntimeError("Unexpected or empty response from geocoding service.")
             return {
                 "lat": data[0]["lat"],
                 "lon": data[0]["lon"],
@@ -378,10 +386,10 @@ Arguments: Same as get_current_weather."""
         else:
             raise ValueError("Insufficient location information. Provide lat/lon, city, or zip + country_code.")
     
-    def _get_current_weather(self, **kwargs) -> str:
+    def _get_current_weather(self, supports_function_calls: bool, **kwargs) -> str:
         try:
             info = self.__resolve_coordinates(**kwargs)
-        except ValueError as e:
+        except (ConnectionError, LookupError, RuntimeError, ValueError) as e:
             return str(e)
 
         endpoint = f"{self.__data_endpoint}/weather"
@@ -394,16 +402,21 @@ Arguments: Same as get_current_weather."""
         }
 
         response = self._send_resquest("GET", endpoint, params = params)
+        if response.get("error"):
+            return response["error"]
         response["city_name"] = info["city"]
         response["country"] = info["country"]
         response["units"] = kwargs.get("units", "metric")
-        return self.__format_current_weather(response)
+        if supports_function_calls:
+            return response
+        else:
+            return self.__format_current_weather(response)
         
     
-    def _get_forecast(self, **kwargs) -> str:
+    def _get_forecast(self, supports_function_calls: bool, **kwargs) -> str:
         try:
             info = self.__resolve_coordinates(**kwargs)
-        except ValueError as e:
+        except (ConnectionError, LookupError, RuntimeError, ValueError) as e:
             return str(e)
 
         endpoint = f"{self.__data_endpoint}/forecast"
@@ -416,15 +429,20 @@ Arguments: Same as get_current_weather."""
         }
 
         response = self._send_resquest("GET", endpoint, params = params)
+        if response.get("error"):
+            return response["error"]
         response["city_name"] = info["city"]
         response["country"] = info["country"]
         response["units"] = kwargs.get("units", "metric")
-        return self.__format_forecast(response)
+        if supports_function_calls:
+            return response
+        else:
+            return self.__format_forecast(response)
         
-    def _get_air_pollution(self, **kwargs) -> str:
+    def _get_air_pollution(self, supports_function_calls: bool, **kwargs) -> str:
         try:
             info = self.__resolve_coordinates(**kwargs)
-        except ValueError as e:
+        except (ConnectionError, LookupError, RuntimeError, ValueError) as e:
             return str(e)
 
         endpoint = f"{self.__data_endpoint}/air_pollution"
@@ -435,10 +453,15 @@ Arguments: Same as get_current_weather."""
         }
 
         response = self._send_resquest("GET", endpoint, params = params)
+        if response.get("error"):
+            return response["error"]
         response["city_name"] = info["city"]
         response["country"] = info["country"]
         response["units"] = kwargs.get("units", "metric")
-        return self.__format_air_pollution(response)
+        if supports_function_calls:
+            return response
+        else:
+            return self.__format_air_pollution(response)
     
     def __format_current_weather(self, response: dict):
         if not response or "weather" not in response:

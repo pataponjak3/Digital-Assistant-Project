@@ -4,6 +4,7 @@ import json
 from ....config.config import APIKeyManager
 from ....interfaces.llm_adapter_interface import LLMAdapter
 from ....interfaces.rest_service_interface import RESTService
+from ....types.types import LLMResponse
 from typing import Optional
 
 class AwanLlamaAdapter(RESTService, LLMAdapter):
@@ -38,14 +39,7 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
         return response.json()
 
 
-    def chat(self, input: str, is_user_message: bool=True) -> str:
-        def is_json(text):
-            try:
-                json.loads(text)
-                return True
-            except (ValueError, TypeError):
-                return False
-        
+    def chat(self, input: str, is_user_message: bool=True, supports_function_calls: bool=False) -> LLMResponse:   
         if is_user_message:
             # Add user message to conversation history
             print("=====" + input)
@@ -75,8 +69,21 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
             
             input = result["choices"][0]["message"]["content"]
 
-        # Add assistant message to conversation history, but not function calls
-        if not is_json(input):
-            self.__messages.append({"role": "assistant", "content": input})
+            try:
+                parsed = json.loads(input)
+                if "function" in parsed and "arguments" in parsed:
+                    return LLMResponse(
+                        type="function_call",
+                        function=parsed["function"],
+                        module=parsed.get("module", "fn"),  # Default to "fn" if module not specified
+                        arguments=parsed["arguments"]
+                    )
+            except json.JSONDecodeError:
+                pass
 
-        return input
+            self.__messages.append({"role": "assistant", "content": input})
+            return LLMResponse(type="response", content=input)
+        
+        else:
+            self.__messages.append({"role": "assistant", "content": input})
+            return LLMResponse(type="response", content=input)

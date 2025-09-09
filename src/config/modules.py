@@ -9,6 +9,18 @@ LLM_REGISTRY = {
         "filePath": "base.llm.gemini_adapter",
         "class": "GeminiAdapter",
         "model": "gemini-2.0-flash",
+        "suportsFunctionCalls": True
+    },
+    "Gorilla-OpenFunctions-v2": {
+        "filePath": "base.llm.gorilla_adapter",
+        "class": "GorillaAdapter",
+        "model": "gorilla-openfunctions-v2",
         "suportsFunctionCalls": False
+    },
+    "Qwen2.5-7B-Instruct": {
+        "filePath": "base.llm.qwen_adapter",
+        "class": "QwenAdapter",
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "suportsFunctionCalls": True
     }
 }

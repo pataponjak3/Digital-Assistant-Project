@@ -6,10 +6,10 @@ from ....interfaces.llm_adapter_interface import LLMAdapter
 from ....types.types import LLMResponse
 from typing import Optional
 
-class GeminiAdapter(LLMAdapter):
+class QwenAdapter(LLMAdapter):
     __client = OpenAI(
-        api_key = APIKeyManager().get_key("gemini"),
-        base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+        api_key = APIKeyManager().get_key("huggingface"),
+        base_url = "https://router.huggingface.co/v1"
     )
 
     def __init__(self, model: str, prompt: str, tools: Optional[list]=None):
@@ -17,9 +17,9 @@ class GeminiAdapter(LLMAdapter):
         self.__system_prompt = prompt
         self.__tools = tools if tools is not None else []
         self.__messages = [{"role": "system", "content": self.__system_prompt}]
+        self.__tool_calls = []
 
     def chat(self, input: str, is_not_da_response: bool=True, supports_function_calls: bool=False) -> LLMResponse:
-            
         if is_not_da_response:
             self.__messages.append({"role": "user", "content": input})
 
@@ -32,18 +32,19 @@ class GeminiAdapter(LLMAdapter):
                     tools=self.__tools if supports_function_calls else None,
                     tool_choice="auto" if (supports_function_calls and self.__tools) else "none"
                 )
+                
             except Exception as e:
-                print(f"ERROR: Gemini chat call failed: {e}")
+                print(f"ERROR: Qwen chat call failed: {e}")
                 return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
+            
             
             choice = result.choices[0].message
 
-            print(choice)
-
             # --- A) Structured function call (tool_calls present) ---
             if supports_function_calls and choice.tool_calls:
-                self.__messages.append(choice) # Store tool_calls in message history
+                self.__messages.append({"role": "assistant", "tool_calls": choice.tool_calls}) # Store tool_calls in message history
                 tool_call = choice.tool_calls[0]
+                self.__tool_calls.append(tool_call.id)
                 module_name, function_name = tool_call.function.name.split("_", 1)
                 args = json.loads(tool_call.function.arguments)
                 # Do NOT append assistant/tool message yet, Backend will push result
@@ -86,7 +87,13 @@ class GeminiAdapter(LLMAdapter):
         
         else:
             if supports_function_calls:
-                self.__messages.append({"role": "user", "content": input})
+                try:
+                    input = json.dumps(input)
+                except Exception:
+                    pass
+
+                self.__messages.append({"role": "tool", "call_id": self.__tool_calls[-1], "content": input})
+                print(self.__messages)
                 try:
                     result = self.__client.chat.completions.create(
                         model=self.__model,
@@ -97,7 +104,7 @@ class GeminiAdapter(LLMAdapter):
                         tool_choice="auto" if (supports_function_calls and self.__tools) else "none"   
                     )
                 except Exception as e:
-                    print(f"ERROR: Gemini chat call failed after tool input: {e}")
+                    print(f"ERROR: Qwen chat call failed after tool input: {e}")
                     return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
                 choice = result.choices[0].message
                 self.__messages.append({"role": "assistant", "content": choice.content})

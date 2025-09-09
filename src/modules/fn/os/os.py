@@ -20,6 +20,7 @@ Module: os
 Description: Launches an application by its name in the system, if it has a shortcut in the Start Menu.
 Arguments:
 - app_name (string): The name of the application to launch.
+- is_sure_after_multiple_matches (bool): Indicates if the user confirmed which application to launch when multiple matches were found before in the conversation.
 """
         ]
     
@@ -43,16 +44,21 @@ Arguments:
                             "app_name": {
                                 "type": "string",
                                 "description": "The name of the application to launch.",
+                            },
+                            "is_sure_after_multiple_matches": {
+                                "type": "boolean",
+                                "description": "Indicates if the user confirmed which application to launch when multiple matches were found before in the conversation.",
+                                "default": False
                             }
                         },
-                        "required": ["app_name"]
+                        "required": ["app_name", "is_sure_after_multiple_matches"]
                     }
                 }
             }
         ]
 
-    def execute_function(self, name: str, args: dict):
-        return getattr(self, f"_{name}")(**args)
+    def execute_function(self, name: str, args: dict, supports_function_calls: bool):
+        return getattr(self, f"_{name}")( **args)
     
     def __is_valid_app_shortcut(self, path: str) -> bool:
         """Validates if the given path is a valid application shortcut.
@@ -121,7 +127,7 @@ Arguments:
 
         return [(match, score) for match, score, _ in matches if score >= score_threshold]
     
-    def _launch_application(self, app_name: str) -> str:
+    def _launch_application(self, app_name: str, is_sure_after_multiple_matches: bool=False) -> str:
         """Launches an application by its name.
         
         :param app_name: The name of the application to launch.
@@ -129,8 +135,9 @@ Arguments:
         :return: A string indicating the result of the launch attempt.
         :rtype: str
         """
-        app_query = app_name.lower().strip()
 
+        app_query = app_name.lower().strip()
+            
         existing_dirs = [d for d in self.__START_MENU_DIRS if os.path.isdir(d)]
         if not existing_dirs:
             return (
@@ -154,11 +161,14 @@ Arguments:
                 f"No matching applications found for '{app_query}'.\n"
                 "Make sure the application has a shortcut in the Start Menu and try again."
             )
-
-        if len(high_matches) == 1:
-            match_name = high_matches[0][0]
-            subprocess.Popen(shortcuts[match_name], shell=True)
-            return f"Launched '{match_name.title()}'."
-        else:
-            options = "\n".join([f"- {match[0].title()} ({match[1]}% match)" for match in high_matches])
-            return f"Multiple possible matches found:{options}\n\nPlease specify which one you meant."
+        
+        try:
+            if len(high_matches) == 1 or is_sure_after_multiple_matches:
+                match_name = high_matches[0][0]
+                subprocess.Popen(shortcuts[match_name], shell=True)
+                return f"Launched '{match_name.title()}'."
+            else:
+                options = "\n".join([f"- [{i+1}]{match[0].title()} ({match[1]}% match)" for i, match in enumerate(high_matches)])
+                return f"Multiple possible matches found:\n{options}\n\nPlease specify which one you meant."
+        except Exception as e:
+            return f"Error launching application: {e}"

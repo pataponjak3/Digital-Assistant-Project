@@ -16,7 +16,7 @@ class FunctionHandler(ABC):
         pass
 
     @abstractmethod
-    def call_function(self, module_name: str, function_name: str, arguments: dict) -> Callable[[str, dict], Callable[[dict], str]]:
+    def call_function(self, module_name: str, function_name: str, arguments: dict, supports_function_calls: bool) -> Callable[[str, dict], Callable[[dict], str | dict]]:
         """
         Call a function from a specific module with the given arguments.
 
@@ -26,8 +26,8 @@ class FunctionHandler(ABC):
         :type function_name: str
         :param arguments: Arguments to pass to the function.
         :type arguments: dict
-        :return: Result of the function call, which should be a string containing the response for the user.
-        :rtype: str
+        :return: Result of the function call, which should be string with the response for the user (it can also be a dictionary in certain cases).
+        :rtype: str | dict
         """
         pass
         

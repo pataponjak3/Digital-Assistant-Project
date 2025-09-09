@@ -10,7 +10,7 @@
                 "class": "SpeechSynthesisModule"
             },
             "llm": {
-                "model": "Gemini-2.0-Flash"
+                "model": "Qwen2.5-7B-Instruct"
             }
         },
         "fn": {
