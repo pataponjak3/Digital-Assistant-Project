@@ -1,6 +1,6 @@
-from ....interfaces.rest_service_interface import RESTService
-from ....interfaces.functionality_interface import Functionality
-from ....config.config import APIKeyManager
+from interfaces.rest_service_interface import RESTService
+from interfaces.functionality_interface import Functionality
+from config.config import APIKeyManager
 from typing import Callable
 import requests, datetime
 
@@ -40,7 +40,7 @@ Arguments:
 - city (string): City name. Optionally add state_code (only for USA) and country_code (follows ISO 3166).
 - lat (number) and lon (number): Coordinates (-90 to 90, -180 to 180).
 - zip (string) and country_code (string): Postal code and country code.
-- units (string): Optional. Temperature unit: standart, metric, imperial.
+- units (string): Optional. Temperature unit: standard, metric, imperial.
 - lang (string): Optional. Language code for weather description (e.g., 'en').""",
 """Function: get_forecast
 Module: meteorology
@@ -339,7 +339,7 @@ Arguments: Same as get_current_weather."""
             # Zip geocode lookup
             endpoint = f"{self.__geo_endpoint}/zip"
             params = {
-                "zip": f"{kwargs['zip']},{kwargs['country_code']}",
+                "zip": f"{str(kwargs['zip'])},{kwargs['country_code']}",
                 "appid": self.__api_key
             }
             data = self._send_resquest("GET", endpoint, params = params)
@@ -347,7 +347,7 @@ Arguments: Same as get_current_weather."""
                 raise ConnectionError(data["error"])
             if isinstance(data, dict) and data.get("cod") == 404:
                 raise LookupError("No results found for the given location.")
-            if not isinstance(data, list) or not data:
+            if not isinstance(data, dict) or not data:
                 raise RuntimeError("Unexpected or empty response from geocoding service.")
             return {
                 "lat": data["lat"],

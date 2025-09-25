@@ -1,6 +1,6 @@
-from ..interfaces.llm_adapter_interface import LLMAdapter
-from ..interfaces.backend_interface import Backend
-from ..interfaces.func_handler_interface import FunctionHandler
+from interfaces.llm_adapter_interface import LLMAdapter
+from interfaces.backend_interface import Backend
+from interfaces.func_handler_interface import FunctionHandler
 
 class AssistantBackend(Backend):
     def __init__(self, llm_adapter: LLMAdapter, function_handler: FunctionHandler, supports_function_calls: bool=False):

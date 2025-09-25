@@ -1,5 +1,5 @@
-from ..interfaces.functionality_interface import Functionality
-from ..interfaces.func_handler_interface import FunctionHandler
+from interfaces.functionality_interface import Functionality
+from interfaces.func_handler_interface import FunctionHandler
 from typing import Callable
 
 class AssistantFunctionHandler(FunctionHandler):

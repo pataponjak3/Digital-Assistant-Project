@@ -1,4 +1,4 @@
-from ....interfaces.functionality_interface import Functionality
+from interfaces.functionality_interface import Functionality
 import os
 import subprocess
 from win32com.client import Dispatch

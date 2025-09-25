@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from ..interfaces.backend_interface import Backend
-from ..interfaces.sr_interface import SpeechRecognizer
-from ..interfaces.ss_interface import SpeechSynthesizer
+from interfaces.backend_interface import Backend
+from interfaces.sr_interface import SpeechRecognizer
+from interfaces.ss_interface import SpeechSynthesizer
 from typing import Optional
 
 class ChatHandler(ABC):

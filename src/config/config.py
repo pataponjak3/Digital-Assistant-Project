@@ -2,9 +2,8 @@ import importlib
 import json
 import os
 from dotenv import load_dotenv
-from ..interfaces.functionality_interface import Functionality
-from .modules import LLM_REGISTRY
-from typing import Type, Any
+from interfaces.functionality_interface import Functionality
+from config.modules import LLM_REGISTRY
 
 class ModuleLoader:
     def __init__(self, config_path="src/config/config.json"):
@@ -29,11 +28,11 @@ class ModuleLoader:
         if not file_path or not class_name:
             raise ValueError(f"Misssing file path or class name for {module_name}")
         try:
-            module = importlib.import_module(f"src.modules.{file_path}")
+            module = importlib.import_module(f"modules.{file_path}")
             print("=====" + module.__name__)
             return getattr(module, class_name)(**kwargs)
         except ModuleNotFoundError:
-            raise ImportError(f"Module 'src.modules.{file_path}' not found!")
+            raise ImportError(f"Module 'modules.{file_path}' not found!")
         except AttributeError:
             raise ImportError(f"Class {class_name} not found in {file_path}!")
     

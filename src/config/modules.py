@@ -1,5 +1,5 @@
 LLM_REGISTRY = {
-    "Meta-Llama-3.1-8B-Instruct": {
+    "Awan-Llama-3.1-8B-Instruct": {
         "filePath": "base.llm.awan_llama_adapter",
         "class": "AwanLlamaAdapter",
         "model": "Meta-Llama-3.1-8B-Instruct",
@@ -9,7 +9,7 @@ LLM_REGISTRY = {
         "filePath": "base.llm.gemini_adapter",
         "class": "GeminiAdapter",
         "model": "gemini-2.0-flash",
-        "suportsFunctionCalls": True
+        "suportsFunctionCalls": False
     },
     "Gorilla-OpenFunctions-v2": {
         "filePath": "base.llm.gorilla_adapter",
@@ -22,5 +22,11 @@ LLM_REGISTRY = {
         "class": "QwenAdapter",
         "model": "Qwen/Qwen2.5-7B-Instruct",
         "suportsFunctionCalls": True
+    },
+    "HuggingFace-Llama-3.1-8B-Instruct": {
+        "filePath": "base.llm.hugging_face_llama_adapter",
+        "class": "HuggingFaceLlamaAdapter",
+        "model": "meta-llama/Llama-3.1-8B-Instruct",
+        "suportsFunctionCalls": False
     }
 }

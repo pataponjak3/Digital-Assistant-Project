@@ -1,10 +1,10 @@
 import requests
 import json
 
-from ....config.config import APIKeyManager
-from ....interfaces.llm_adapter_interface import LLMAdapter
-from ....interfaces.rest_service_interface import RESTService
-from ....types.types import LLMResponse
+from config.config import APIKeyManager
+from interfaces.llm_adapter_interface import LLMAdapter
+from interfaces.rest_service_interface import RESTService
+from app_types.app_types import LLMResponse
 from typing import Optional
 
 class AwanLlamaAdapter(RESTService, LLMAdapter):
@@ -39,8 +39,8 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
         return response.json()
 
 
-    def chat(self, input: str, is_user_message: bool=True, supports_function_calls: bool=False) -> LLMResponse:   
-        if is_user_message:
+    def chat(self, input: str, is_not_da_response: bool=True, supports_function_calls: bool=False) -> LLMResponse:   
+        if is_not_da_response:
             # Add user message to conversation history
             print("=====" + input)
             self.__messages.append({"role": "user", "content": input})
@@ -87,3 +87,6 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
         else:
             self.__messages.append({"role": "assistant", "content": input})
             return LLMResponse(type="response", content=input)
+        
+    def clear_chat_history(self):
+        self.__messages = [{"role": "system", "content": self.__system_prompt}]  # Initial conversation history

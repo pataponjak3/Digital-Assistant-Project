@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from ..interfaces.llm_adapter_interface import LLMAdapter
-from ..interfaces.func_handler_interface import FunctionHandler
+from interfaces.llm_adapter_interface import LLMAdapter
+from interfaces.func_handler_interface import FunctionHandler
 
 class Backend(ABC):
 

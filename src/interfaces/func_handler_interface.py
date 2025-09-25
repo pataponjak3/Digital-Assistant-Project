@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..interfaces.functionality_interface import Functionality
+from interfaces.functionality_interface import Functionality
 from typing import Callable
 
 class FunctionHandler(ABC):

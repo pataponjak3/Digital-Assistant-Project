@@ -1,4 +1,4 @@
-from ....interfaces.ss_interface import SpeechSynthesizer
+from interfaces.ss_interface import SpeechSynthesizer
 import pyttsx3
 import threading
 

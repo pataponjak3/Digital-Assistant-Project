@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..types.types import LLMResponse
+from app_types.app_types import LLMResponse
 
 class LLMAdapter(ABC):
 
@@ -14,5 +14,11 @@ class LLMAdapter(ABC):
         :type user_message: bool
         :return: Answer of the LLM, which can be a response or a function call.
         :rtype: LLMResponse
+        """
+    
+    @abstractmethod
+    def clear_chat_history(self):
+        """
+        Clear the chat history.
         """
         

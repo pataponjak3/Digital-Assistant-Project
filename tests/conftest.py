@@ -1,35 +1,54 @@
 import pytest
-from ..src.modules.base.llm.awan_llama_adapter import AwanLlamaAdapter
-from ..src.modules.fn.met.meteorology import MeteorologyFunctionality
-from ..src.modules.fn.os.os import OSFunctionality
-from ..src.utils.function_handler import AssistantFunctionHandler
-from ..src.core.assistant_backend import AssistantBackend
+from modules.base.llm.awan_llama_adapter import AwanLlamaAdapter
+from modules.base.llm.gemini_adapter import GeminiAdapter
+from modules.base.llm.qwen_adapter import QwenAdapter
+from modules.base.llm.hugging_face_llama_adapter import HuggingFaceLlamaAdapter
+from utils.function_handler import AssistantFunctionHandler
+from utils.system_prompt_generator import AssistantSystemPromptGenerator
+from core.assistant_backend import AssistantBackend
+from config.config import ModuleLoader
+
+modules = ModuleLoader().load_functionality_modules()
+prompt_noFunc = AssistantSystemPromptGenerator(modules).generate(False)
+prompt_func = AssistantSystemPromptGenerator(modules).generate(True)
+tools = []
+for module in modules.values():
+    tools.extend(module.get_functions_schema())
 
 @pytest.fixture(scope="session")
-def new_awan_adapter_factory():
-    def _factory():
-        
-        return AwanLlamaAdapter()
-    return _factory
+def new_awan_llama_adapter():
+    return AwanLlamaAdapter("Meta-Llama-3.1-8B-Instruct", prompt_noFunc)
+
+@pytest.fixture(scope="session")
+def new_gemini_adapter():
+    return GeminiAdapter("gemini-2.0-flash", prompt_noFunc)
+
+@pytest.fixture(scope="session")
+def new_qwen_adapter():
+    return QwenAdapter("Qwen/Qwen2.5-7B-Instruct", prompt_noFunc)
+
+@pytest.fixture(scope="session")
+def new_qwen_func_adapter():
+    return QwenAdapter("Qwen/Qwen2.5-7B-Instruct", prompt_func, tools)
+
+@pytest.fixture(scope="session")
+def new_huggingface_llama_adapter():
+    return HuggingFaceLlamaAdapter("meta-llama/Llama-3.1-8B-Instruct", prompt_noFunc)
 
 @pytest.fixture(scope="session")
 def weather_module():
-    return MeteorologyFunctionality()
+    return modules.get("meteorology")
 
 @pytest.fixture(scope="session")
 def os_module():
-    return OSFunctionality()
+    return modules.get("os")
 
 @pytest.fixture(scope="session")
-def function_handler(weather_module, os_module):
-    modules = {
-        "meteorology": weather_module,
-        "os": os_module
-    }
+def function_handler():
     return AssistantFunctionHandler(modules)
 
 @pytest.fixture(scope="session")
-def backend(llm_adapter,function_handler):
+def backend(llm_adapter, function_handler):
     # Construct your backend with the LLM and modules
     return AssistantBackend(
         llm_adapter=llm_adapter,
@@ -37,6 +56,7 @@ def backend(llm_adapter,function_handler):
         llm_supports_function_calls=False
     )
 
+@pytest.fixture(scope="session")
 def conversation_normal():
     return [
         "Explain the difference between threads and processes in one paragraph.",
@@ -71,6 +91,7 @@ def conversation_normal():
         "Turn 'I will try' into 3 stronger alternatives."
     ]
 
+@pytest.fixture(scope="session")
 def conversation_current_weather():
     return[
         "Current weather at 40.7128, -74.0060?",
@@ -105,6 +126,7 @@ def conversation_current_weather():
         "What's the weather in Porto, PT?"
     ]
 
+@pytest.fixture(scope="session")
 def conversation_5day_forecast():
     return [
         "5-day forecast for 40.7128, -74.0060.",
@@ -139,6 +161,7 @@ def conversation_5day_forecast():
         "5-day for Porto, PT."
     ]
 
+@pytest.fixture(scope="session")
 def conversation_air_pollution():
     return [
         "Current air quality at 40.7128, -74.0060?",
@@ -173,6 +196,7 @@ def conversation_air_pollution():
         "Air quality Porto, PT."
     ]
 
+@pytest.fixture(scope="session")
 def conversation_launch_app():
     return [
         "Open Steam.",
@@ -200,7 +224,7 @@ def conversation_launch_app():
         "Start Power Point.",
         "Open Paint.",
         "Start Edge browser.",
-        "Launch GitHub Desktop.",
+        "Launch Git Extensions.",
         "Open 7Zip.",
         "Start IntelliJ.",
         "Open Pychram.",

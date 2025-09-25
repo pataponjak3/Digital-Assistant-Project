@@ -10,7 +10,7 @@
                 "class": "SpeechSynthesisModule"
             },
             "llm": {
-                "model": "Qwen2.5-7B-Instruct"
+                "model": "Awan-Llama-3.1-8B-Instruct"
             }
         },
         "fn": {

@@ -10,3 +10,6 @@ deactivate
 
 # Python version
 Python 3.10
+
+# Run tests
+pytest tests/test_performance.py::(specific test) --log-file=tests/logs/(specific name).log --log-file-level=DEBUG -v

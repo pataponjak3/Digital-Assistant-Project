@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QDialog
-from ..interfaces.sr_interface import SpeechRecognizer
+from interfaces.sr_interface import SpeechRecognizer
 
 
 class MicSettingsWindow(object):

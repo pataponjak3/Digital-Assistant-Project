@@ -1,9 +1,9 @@
 import json
 
 from openai import OpenAI #Although this module utilizes a REST API, we use the official OpenAI Python client for simplicity.
-from ....config.config import APIKeyManager
-from ....interfaces.llm_adapter_interface import LLMAdapter
-from ....types.types import LLMResponse
+from config.config import APIKeyManager
+from interfaces.llm_adapter_interface import LLMAdapter
+from app_types.app_types import LLMResponse
 from typing import Optional
 
 class GeminiAdapter(LLMAdapter):
@@ -106,3 +106,6 @@ class GeminiAdapter(LLMAdapter):
                 # No function calling support → just store result as assistant response
                 self.__messages.append({"role": "assistant", "content": input})
                 return LLMResponse(type="response", content=input)
+            
+    def clear_chat_history(self):
+        self.__messages = [{"role": "system", "content": self.__system_prompt}]  # Initial conversation history

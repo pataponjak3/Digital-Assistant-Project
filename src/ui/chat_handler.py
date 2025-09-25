@@ -1,7 +1,7 @@
-from ..interfaces.backend_interface import Backend
-from ..interfaces.sr_interface import SpeechRecognizer
-from ..interfaces.ss_interface import SpeechSynthesizer
-from ..interfaces.chat_handler_interface import ChatHandler
+from interfaces.backend_interface import Backend
+from interfaces.sr_interface import SpeechRecognizer
+from interfaces.ss_interface import SpeechSynthesizer
+from interfaces.chat_handler_interface import ChatHandler
 
 class AssistantChatHandler(ChatHandler):
     def __init__(self, backend: Backend, ss: SpeechSynthesizer, sr: SpeechRecognizer):
