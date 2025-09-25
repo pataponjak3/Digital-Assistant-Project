@@ -1,0 +1,180 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 436
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Current air quality at 40.7128, -74.0060?' took 14.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': 40.7128, 'lon': -74.006})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 444
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI near -33.8688, 151.2093 right now.' took 3.48s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': '-33.8688', 'lon': '151.2093'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'What's PM2.5 at -23.5505, -46.6333?' took 3.49s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': '-23.5505', 'lon': '-46.6333'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 435
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air pollution for 30.0444, 31.2357.' took 3.49s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': 30.0444, 'lon': 31.2357})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 435
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI around 55.7558, 37.6173 (Moscow).' took 3.50s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': 55.7558, 'lon': 37.6173})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 435
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Current AQI for -1.2921, 36.8219.' took 3.49s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': -1.2921, 'lon': 36.8219})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 436
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Is air clean near 64.1466, -21.9426?' took 3.51s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': 64.1466, 'lon': -21.9426})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 444
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Pollution stats at -33.9249, 18.4241.' took 3.49s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': '-33.9249', 'lon': '18.4241'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 436
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI now 35.6895, 139.6917.' took 3.49s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': 35.6895, 'lon': 139.6917})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 435
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality 38.7223, -9.1393.' took 3.48s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'lat': 38.7223, 'lon': -9.1393})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality for 10001, US.' took 3.43s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '10001', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI now at 90210, US.' took 3.28s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '90210', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Pollution level 60614, US.' took 3.27s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '60614', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI 10115, DE.' took 3.30s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '10115', 'country_code': 'DE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality SW1A 1AA, GB.' took 3.47s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': 'SW1A 1AA', 'country_code': 'GB'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI 75001, FR.' took 3.27s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '75001', 'country_code': 'FR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality 1250-096, PT.' took 3.39s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '1250-096', 'country_code': 'PT'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 532
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI 2000, AU.' took 4.58s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': '', 'state_code': '', 'country_code': 'AU', 'zip': '', 'lat': None, 'lon': None})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 449
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality 01000-000, BR.' took 3.38s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'zip': '01000-000', 'country_code': 'BR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 532
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI 110001, IN.' took 4.57s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': None, 'state_code': None, 'country_code': None, 'zip': '110001', 'lat': None, 'lon': None})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 446
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Current AQI Kyoto, JP.' took 3.26s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Kyoto', 'country_code': 'JP'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality Toronto, CA now.' took 3.22s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Toronto', 'country_code': 'CA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI Nairobi?' took 3.34s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Nairobi', 'country_code': 'KE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 449
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality in Auckland, NZ.' took 3.25s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Auckland', 'country_code': 'NZ'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 450
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI Reykjavik, IS (sorry for prev typo).' took 3.40s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Reykjavik', 'country_code': 'IS'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Pollution level Lima, PE.' took 3.25s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Lima', 'country_code': 'PE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 453
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI Johannesburg, ZA.' took 3.42s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Johannesburg', 'country_code': 'ZA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality Munich, DE.' took 3.31s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Munich', 'country_code': 'DE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 454
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'AQI San Francisco, US-CA.' took 3.40s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'San Francisco', 'state_code': 'US-CA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 446
+DEBUG    test_performance:test_performance.py:173 Current air pollution conversation 'Air quality Porto, PT.' took 3.30s with response: 
+LLMResponse(type='function_call', content=None, function='get_air_pollution', module='meteorology', arguments={'city': 'Porto', 'country_code': 'PT'})
+
+

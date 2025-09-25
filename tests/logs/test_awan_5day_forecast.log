@@ -1,0 +1,180 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 431
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day forecast for 40.7128, -74.0060.' took 14.31s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': 40.7128, 'lon': -74.006})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 432
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Next 5 days near -33.8688, 151.2093?' took 3.43s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': -33.8688, 'lon': 151.2093})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 440
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Forecast (5d) at -23.5505, -46.6333.' took 3.45s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': '-23.5505', 'lon': '-46.6333'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 430
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Show me 5-day outlook for 30.0444, 31.2357.' took 3.39s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': 30.0444, 'lon': 31.2357})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 430
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'What's the week ahead at 55.7558, 37.6173?' took 3.43s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': 55.7558, 'lon': 37.6173})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 430
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Five-day forecast around -1.2921, 36.8219.' took 3.40s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': -1.2921, 'lon': 36.8219})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 431
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Is it cooling later this week near 64.1466, -21.9426?' took 3.39s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': 64.1466, 'lon': -21.9426})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 431
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Give 5-day hi/lo for -33.9249, 18.4241.' took 3.44s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': -33.9249, 'lon': 18.4241})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 431
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Forecast next days at 35.6895, 139.6917.' took 5.30s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': 35.6895, 'lon': 139.6917})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 430
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Five-day for 38.7223, -9.1393 (Lisbon).' took 4.25s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'lat': 38.7223, 'lon': -9.1393})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 440
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day forecast 10001, US.' took 3.94s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '10001', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 440
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Forecast for 90210, US next 5 days.' took 3.95s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '90210', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 440
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Weather outlook 60614, US.' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '60614', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 440
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day for 10115, DE.' took 3.30s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '10115', 'country_code': 'DE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 443
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Next five days SW1A 1AA, GB.' took 3.51s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': 'SW1A 1AA', 'country_code': 'GB'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 438
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Forecast 75001, FR.' took 3.28s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '75001', 'country_code': 'FR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 443
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day for 1250-096, PT.' took 3.41s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '1250-096', 'country_code': 'PT'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 439
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Forecast for 2000, AU.' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '2000', 'country_code': 'AU'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 443
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day outlook 01000-000, BR.' took 3.40s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '01000-000', 'country_code': 'BR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 441
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Next 5 days 110001, IN.' took 3.31s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'zip': '110001', 'country_code': 'IN'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 441
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Five-day forecast Kyoto, JP.' took 3.30s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Kyoto', 'country_code': 'JP'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 470
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'What's the 5-day in Toronto, CA?' took 3.59s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Toronto', 'state_code': '', 'country_code': 'CA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 412
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day forecast Nairobi.' took 2.82s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Nairobi'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 444
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Week ahead in Auckland, NZ.' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Auckland', 'country_code': 'NZ'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day for Reykjavik, IS (typo earlier).' took 3.38s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Reykjavik', 'country_code': 'IS'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 440
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Forecast 5 days Lima, PE.' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Lima', 'country_code': 'PE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Next 5 days Johannesburg, ZA.' took 3.41s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Johannesburg', 'country_code': 'ZA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 442
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'Munich, DE 5-day outlook.' took 4.10s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Munich', 'country_code': 'DE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 450
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation 'San Francisco, US-CA 5-day forecast.' took 4.23s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'San Francisco', 'state_code': 'US-CA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 441
+DEBUG    test_performance:test_performance.py:159 5 day forecast conversation '5-day for Porto, PT.' took 4.06s with response: 
+LLMResponse(type='function_call', content=None, function='get_forecast', module='meteorology', arguments={'city': 'Porto', 'country_code': 'PT'})
+
+

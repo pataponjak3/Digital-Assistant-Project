@@ -1,0 +1,164 @@
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Steam'} took 1.87s, with result: 
+Multiple possible matches found:
+- [1]Steam (100.0% match)
+- [2]Ea (100.0% match)
+- [3]Steam Support Center (100.0% match)
+- [4]System Information (80.0% match)
+
+Please specify which one you meant.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'dis cord'} took 1.18s, with result: 
+Launched 'Word'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Eclipse IDE'} took 1.26s, with result: 
+Multiple possible matches found:
+- [1]Eclipse Ide For Enterprise Java And Web Developers - 2023-12 (100.0% match)
+- [2]Eclipse Ide For Java Developers - 2023-12 (100.0% match)
+
+Please specify which one you meant.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'VS Code'} took 1.20s, with result: 
+Launched 'Visual Studio Code'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'visual studio code'} took 1.45s, with result: 
+Multiple possible matches found:
+- [1]Visual Studio Code (100.0% match)
+- [2]Rstudio (85.71428571428572% match)
+
+Please specify which one you meant.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'VSC'} took 1.48s, with result: 
+No matching applications found for 'vsc'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Win RAR'} took 1.54s, with result: 
+Launched 'Winrar'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'WinRAR'} took 1.46s, with result: 
+Launched 'Winrar'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Google Chorme'} took 1.85s, with result: 
+Launched 'Google Chrome'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'chrome browser'} took 1.48s, with result: 
+No matching applications found for 'chrome browser'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Firefox'} took 1.22s, with result: 
+No matching applications found for 'firefox'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Notepad'} took 1.14s, with result: 
+Launched 'Notepad++'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'calc'} took 1.21s, with result: 
+No matching applications found for 'calc'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'VLC'} took 1.26s, with result: 
+No matching applications found for 'vlc'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Spotify'} took 1.05s, with result: 
+No matching applications found for 'spotify'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Adobe Reader'} took 1.04s, with result: 
+Launched 'Ea'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Acrobat'} took 1.20s, with result: 
+No matching applications found for 'acrobat'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Slack'} took 1.04s, with result: 
+Multiple possible matches found:
+- [1]Bluestacks Services (80.0% match)
+- [2]Bluestacks X (80.0% match)
+- [3]Application Stack Builder (80.0% match)
+
+Please specify which one you meant.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'MS Teams'} took 1.02s, with result: 
+Multiple possible matches found:
+- [1]Ea (100.0% match)
+- [2]Steam (80.0% match)
+- [3]Steam Support Center (80.0% match)
+
+Please specify which one you meant.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Outlok'} took 1.05s, with result: 
+Launched 'Outlook (Classic)'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Word'} took 1.24s, with result: 
+Multiple possible matches found:
+- [1]Swords & Souls Neverseen (100.0% match)
+- [2]Word (100.0% match)
+- [3]Wordpad (100.0% match)
+
+Please specify which one you meant.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Excel'} took 1.32s, with result: 
+Launched 'Excel'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Power Point'} took 1.25s, with result: 
+Launched 'Powerpoint'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Paint'} took 1.37s, with result: 
+Launched 'Powerpoint'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Edge browser'} took 1.55s, with result: 
+No matching applications found for 'edge browser'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Git Extensions'} took 1.25s, with result: 
+Launched 'Git Extensions'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': '7Zip'} took 1.20s, with result: 
+No matching applications found for '7zip'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'IntelliJ'} took 1.22s, with result: 
+Launched 'Intellij Idea Community Edition 2023.2.2'.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Pychram'} took 1.34s, with result: 
+No matching applications found for 'pychram'.
+Make sure the application has a shortcut in the Start Menu and try again.
+
+
+DEBUG    test_performance:test_performance.py:136 launch_application, with args {'app_name': 'Android Studio'} took 1.70s, with result: 
+Multiple possible matches found:
+- [1]Android Studio (100.0% match)
+- [2]Rstudio (92.3076923076923% match)
+- [3]Texstudio (80.0% match)
+
+Please specify which one you meant.
+
+

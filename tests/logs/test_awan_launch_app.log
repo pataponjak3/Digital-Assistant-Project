@@ -1,0 +1,179 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 411
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Steam.' took 13.57s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Steam'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch dis cord.' took 21.05s with response: 
+I’m having trouble generating a response right now.
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 465
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start Eclipse IDE.' took 3.44s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Eclipse IDE', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 413
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open VS Code.' took 2.70s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'VS Code'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 424
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Run visual studio code pls.' took 2.75s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Visual Studio Code'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 409
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch VSC.' took 2.71s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'VSC'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 413
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Win RAR.' took 2.77s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Win RAR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 412
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start WinRAR.' took 2.65s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'WinRAR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 467
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Google Chorme.' took 3.32s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Google Chrome', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 412
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch chrome browser.' took 2.63s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'chrome'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 460
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Firefox.' took 3.28s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Firefox', 'is_sure_after_multiple_matches': True})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 413
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start Notepad.' took 2.70s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Notepad'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 457
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch calc.' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'calc', 'is_sure_after_multiple_matches': True})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 409
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open VLC.' took 2.73s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'VLC'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 415
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start Spotify.' took 2.83s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Spotify'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 418
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Adobe Reader.' took 2.70s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Adobe Reader'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 413
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch Acrobat.' took 2.72s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Acrobat'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 411
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Slack.' took 2.72s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Slack'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 462
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start MS Teams.' took 3.30s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'MS Teams', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 414
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Outlok.' took 2.76s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Outlook'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 410
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch Word.' took 2.73s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Word'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 459
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Excel.' took 3.33s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Excel', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 408
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start Power Point.' took 2.59s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'PowerPoint'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 411
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Paint.' took 2.69s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Paint'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 458
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start Edge browser.' took 3.28s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Edge', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 468
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch Git Extensions.' took 7.34s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Git Extensions', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 459
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open 7Zip.' took 4.27s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': '7-Zip', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 414
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Start IntelliJ.' took 2.78s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'IntelliJ'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 461
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Open Pychram.' took 3.33s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Pycharm', 'is_sure_after_multiple_matches': False})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 420
+DEBUG    test_performance:test_performance.py:190 Launch application conversation 'Launch Android Studio.' took 2.69s with response: 
+LLMResponse(type='function_call', content=None, function='launch_application', module='os', arguments={'app_name': 'Android Studio'})
+
+

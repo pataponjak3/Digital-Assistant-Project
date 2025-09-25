@@ -1,0 +1,180 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 438
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current weather at 40.7128, -74.0060?' took 14.26s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': 40.7128, 'lon': -74.006})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 439
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's it like now near -33.8688, 151.2093 (Sydny)?' took 3.43s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': -33.8688, 'lon': 151.2093})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather rn at -23.5505, -46.6333.' took 3.40s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': '-23.5505', 'lon': '-46.6333'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 437
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Temp & conditions at 30.0444, 31.2357 please.' took 3.41s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': 30.0444, 'lon': 31.2357})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 437
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's the current weather @ 55.7558, 37.6173?' took 3.43s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': 55.7558, 'lon': 37.6173})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 445
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Is it raining around -1.2921, 36.8219 right now?' took 3.42s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': '-1.2921', 'lon': '36.8219'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 438
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'How cold is it near 64.1466, -21.9426?' took 3.41s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': 64.1466, 'lon': -21.9426})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 468
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current wind & temp for -33.9249, 18.4241.' took 3.81s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': -33.9249, 'lon': 18.4241, 'units': 'standard'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 438
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather now at 35.6895, 139.6917 (Tokio)?' took 3.44s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': 35.6895, 'lon': 139.6917})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 438
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's the weather like at 38.7223, -9.1393?' took 4.42s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': 38.7223, 'lon': -9.1393})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 446
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current weather for zip 10001, US.' took 3.24s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '10001', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather now at 90210, US?' took 3.18s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '90210', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'How's Chicago right now—60614, US.' took 3.18s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '60614', 'country_code': 'US'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's it like at 10115, DE (Berlin)?' took 3.58s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '10115', 'country_code': 'DE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 450
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather for SW1A 1AA, GB (Buckingham)?' took 3.41s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': 'SW1A 1AA', 'country_code': 'GB'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Now in 75001, FR?' took 3.20s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '75001', 'country_code': 'FR'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 450
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current weather for 1250-096, PT (Lisboa)?' took 3.31s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '1250-096', 'country_code': 'PT'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 439
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's it now at 2000, AU (Sydney CBD)?' took 3.41s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': -33.8688, 'lon': 151.2093})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 439
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather rn at 01000-000, BR (São Paulo).' took 3.42s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'lat': -23.5505, 'lon': -46.6333})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current conditions for 110001, IN (New Delhi).' took 3.19s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'zip': '110001', 'country_code': 'IN'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 448
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's the weather in Kyoto, JP right now?' took 3.21s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Kyoto', 'country_code': 'JP'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 477
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current conditions in Toronto, CA?' took 3.47s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Toronto', 'state_code': '', 'country_code': 'CA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 419
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'How's Nairobi today?' took 2.74s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Nairobi'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 451
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather now in Auckland, NZ.' took 3.18s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Auckland', 'country_code': 'NZ'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 452
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's it like in Reykyavik, IS?' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Reykjavik', 'country_code': 'IS'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 447
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current weather for Lima, PE.' took 3.21s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Lima', 'country_code': 'PE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 455
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'How's Jo'burg (Johannesburg, ZA) right now?' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Johannesburg', 'country_code': 'ZA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 449
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Weather in Munich, DE (now).' took 3.27s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Munich', 'country_code': 'DE'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 457
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'Current conditions San Francisco, US-CA.' took 3.29s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'San Francisco', 'state_code': 'US-CA'})
+
+
+DEBUG    urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): api.awanllm.com:443
+DEBUG    urllib3.connectionpool:connectionpool.py:544 https://api.awanllm.com:443 "POST /v1/chat/completions HTTP/1.1" 200 451
+DEBUG    test_performance:test_performance.py:146 Current weather conversation 'What's the weather in Porto, PT?' took 3.36s with response: 
+LLMResponse(type='function_call', content=None, function='get_current_weather', module='meteorology', arguments={'city': 'Porto', 'country_code': 'PT'})
+
+
