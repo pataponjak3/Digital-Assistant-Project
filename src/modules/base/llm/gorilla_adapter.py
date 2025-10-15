@@ -95,7 +95,7 @@ class GorillaAdapter(LLMAdapter):
                     )
                 except Exception as e:
                     print(f"ERROR: Gorilla chat call failed after tool input: {e}")
-                    return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
+                    return LLMResponse(type="response", content=f"There was an error generating a response: {e}")
 
                 print(result)
                 choice = result.choices[0].message

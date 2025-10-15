@@ -23,7 +23,19 @@ class AssistantBackend(Backend):
                     message = self.__function_handler.call_function(response.module, response.function, response.arguments, self.__supports_function_calls)
                     final_response = self.__llm.chat(message, False, self.__supports_function_calls)
                     return final_response.content
-                    #if isinstance(message, FunctionalityReturn):
+                except Exception as e:
+                    return f"Error executing function: {e}"
+            else:
+                return response.content
+
+        except Exception as e:
+            return f"Error: {e}"
+        
+    def clear_chat_history(self):
+        self.__llm.clear_chat_history()
+
+
+#if isinstance(message, FunctionalityReturn):
                     #    # Log raw for testing if available
                     #    if message.get("raw") is not None:
                     #        self._log_raw_response(message["raw"])
@@ -40,10 +52,3 @@ class AssistantBackend(Backend):
                     #    # Legacy fallback (plain string return)
                     #    final_response = self.__llm.chat(str(message), False, self.__supports_function_calls)
                     #    return final_response.content
-                except Exception as e:
-                    return f"Error executing function: {e}"
-            else:
-                return response.content
-
-        except Exception as e:
-            return f"Error: {e}"

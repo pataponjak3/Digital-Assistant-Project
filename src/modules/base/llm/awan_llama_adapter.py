@@ -65,7 +65,7 @@ class AwanLlamaAdapter(RESTService, LLMAdapter):
                 result = self._send_resquest("POST", self.__chat_completions_endpoint, headers=headers, data=json.dumps(payload))
             except Exception as e:
                 print(f"ERROR: AwanLlama chat call failed: {e}")
-                return "I’m having trouble generating a response right now."
+                return LLMResponse(type="response", content=f"There was an error generating a response: {e}")
             
             input = result["choices"][0]["message"]["content"]
 

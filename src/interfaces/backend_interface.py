@@ -36,3 +36,9 @@ class Backend(ABC):
         :return: Processed response from the LLM.
         :rtype: str
         """
+
+    @abstractmethod
+    def clear_chat_history(self):
+        """
+        Clear the chat history.
+        """

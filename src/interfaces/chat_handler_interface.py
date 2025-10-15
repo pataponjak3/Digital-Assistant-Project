@@ -45,6 +45,12 @@ class ChatHandler(ABC):
         :return: Processed response from the backend.
         :rtype: str
         """
+
+    @abstractmethod
+    def clear_chat_history(self):
+        """
+        Clear the chat history in the backend.
+        """
     
     @abstractmethod
     def start_speech(self, text: str):

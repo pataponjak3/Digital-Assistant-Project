@@ -103,7 +103,7 @@ class HuggingFaceLlamaAdapter(LLMAdapter):
                     )
                 except Exception as e:
                     print(f"ERROR: Llama chat call failed after tool input: {e}")
-                    return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
+                    return LLMResponse(type="response", content=f"There was an error generating a response: {e}")
                 choice = result.choices[0].message
                 self.__messages.append({"role": "assistant", "content": choice.content})
                 return LLMResponse(type="response", content=choice.content)

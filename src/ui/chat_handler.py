@@ -22,6 +22,9 @@ class AssistantChatHandler(ChatHandler):
         response = self.__backend.handle_user_message(user_message)
         return response
     
+    def clear_chat_history(self):
+        self.__backend.clear_chat_history()
+    
     def start_speech(self, text: str):
         self.__ss.synthesize_speech(text)
 

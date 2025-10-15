@@ -34,7 +34,7 @@ class GeminiAdapter(LLMAdapter):
                 )
             except Exception as e:
                 print(f"ERROR: Gemini chat call failed: {e}")
-                return LLMResponse(type="response", content="I’m having trouble generating a response right now.")
+                return LLMResponse(type="response", content=f"There was an error generating a response: {e}")
             
             choice = result.choices[0].message
 
