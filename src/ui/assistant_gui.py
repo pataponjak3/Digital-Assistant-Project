@@ -34,6 +34,8 @@ class _GenericWorker(QRunnable):
         self.__signals.finished.emit(result)
 
 class ChatBubble(QtWidgets.QWidget):
+    __font_pixel_size = 14
+    __max_bubble_width = int(800 * 0.85)
     def __init__(self, text, is_user, parent=None):
         super().__init__(parent)
         self._is_user = is_user
@@ -41,15 +43,9 @@ class ChatBubble(QtWidgets.QWidget):
         self._text_label.setWordWrap(True)
         self._text_label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
 
-        max_bubble_width = int(800 * 0.85)
-        self._text_label.setMaximumWidth(max_bubble_width)
+        self._text_label.setMaximumWidth(self.__max_bubble_width)
 
-        font = self._text_label.font()
-        font.setPixelSize(14)
-        metrics = QtGui.QFontMetrics(font)
-        text_width_px = metrics.horizontalAdvance(text)
-        min_bubble_width = min(text_width_px+24+10, max_bubble_width)
-        self._text_label.setMinimumWidth(min_bubble_width)
+        self.calculate_bubble_width(text)
 
         self._text_label.setSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred) 
 
@@ -79,10 +75,21 @@ class ChatBubble(QtWidgets.QWidget):
         self.setLayout(layout)
         self.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
 
+    def calculate_bubble_width(self, text):
+        font = self._text_label.font()
+        font.setPixelSize(self.__font_pixel_size)
+        metrics = QtGui.QFontMetrics(font)
+        text_width_px = metrics.horizontalAdvance(text)
+        min_bubble_width = min(text_width_px+24+10, self.__max_bubble_width)
+        self._text_label.setMinimumWidth(min_bubble_width)
+
 class AssistantGUI(object):
 
     __threadpool = QThreadPool()
     __allow_input = True
+
+    __dot_count = 0
+    __anim_timer = None
     
     def __init__(self, chat_handler: ChatHandler):
         super().__init__()
@@ -106,9 +113,6 @@ class AssistantGUI(object):
         self.chat_layout.addStretch()
         self.chat_container.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Preferred)
         self.scroll_area.setWidget(self.chat_container)
-        #self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        #self.textBrowser.setGeometry(QtCore.QRect(0, 20, 801, 521))
-        #self.textBrowser.setObjectName("textBrowser")
         #Text area
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(0, 540, 661, 20))
@@ -135,6 +139,10 @@ class AssistantGUI(object):
         self.checkBox.setObjectName("checkBox")
         self.checkBox.stateChanged.connect(self.__on_tts_checkbox_changed)
         MainWindow.setCentralWidget(self.centralwidget)
+        #Timer for animating dots
+        self.__anim_timer = QtCore.QTimer(MainWindow)
+        self.__anim_timer.setInterval(500) # Update dots every 500ms
+        self.__anim_timer.timeout.connect(self.__update_dots)
         #Menu bar for settings
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
@@ -171,6 +179,34 @@ class AssistantGUI(object):
         self.__mic_settings_ui.setupUi(self.__mic_settings_window)
         self.__mic_settings_window.exec_()
 
+    def __update_dots(self):
+        # Get the last item in the chat_layout. We assume it's the stretch item, 
+        # and the item before that is the bubble.
+        layout_count = self.chat_layout.count()
+        if layout_count < 2:
+            return
+
+        # The bubble should be the second-to-last item (before the stretch item)
+        bubble_item = self.chat_layout.itemAt(layout_count - 2)
+        if not bubble_item:
+            return
+
+        last_bubble_widget = bubble_item.widget()
+        
+        # Check if the last widget is a ChatBubble and is NOT a user message
+        if isinstance(last_bubble_widget, ChatBubble) and not last_bubble_widget._is_user:
+            self.__dot_count = (self.__dot_count % 3) + 1
+            new_dots = '.' * self.__dot_count
+            
+            # Update the QLabel inside the ChatBubble
+            last_bubble_widget._text_label.setText(new_dots)
+            
+            # Use the existing scroll fix to move to the new height
+            self.chat_container.adjustSize()
+            QtCore.QTimer.singleShot(0, 
+                lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum())
+            )
+
     def __send_message(self, voiced: bool = False):
         """
         Send a message either as text or voice based on the 'voiced' parameter.
@@ -189,6 +225,10 @@ class AssistantGUI(object):
             self.__handle_user_message(user_message)
             self.__set_input_enabled(False)
 
+            self.__update_chat(".", False)
+            self.__dot_count = 1
+            self.__anim_timer.start()
+
             worker = _GenericWorker(self.__chat_handler.handle_chat_message, user_message)
             worker.connect_finished_signal(self.__handle_da_response)
             self.__threadpool.start(worker)
@@ -198,11 +238,42 @@ class AssistantGUI(object):
         self.lineEdit.clear()
 
     def __handle_da_response(self, response):
-        self.__update_chat(f"{response}", False)
+        self.__replace_last_da_message(f"{response}")
         self.__set_input_enabled()
         if self.checkBox.isChecked():
             worker = _GenericWorker(self.__chat_handler.start_speech, response)
             self.__threadpool.start(worker)
+
+    def __replace_last_da_message(self, text):
+        # Stop the animation timer
+        if self.__anim_timer.isActive():
+            self.__anim_timer.stop()
+        
+        layout_count = self.chat_layout.count()
+        if layout_count < 2:
+            # Fallback for empty chat (shouldn't happen if animation started)
+            self.__update_chat(text, False)
+            return
+
+        # The bubble should be the second-to-last item (before the stretch item)
+        bubble_item = self.chat_layout.itemAt(layout_count - 2)
+        last_bubble_widget = bubble_item.widget()
+        
+        # Replace the dots with the actual response text
+        if isinstance(last_bubble_widget, ChatBubble) and not last_bubble_widget._is_user:
+            last_bubble_widget: ChatBubble
+            last_bubble_widget.calculate_bubble_width(text)
+            
+            last_bubble_widget._text_label.setText(text)
+            
+            # Force size update and scroll to ensure the final response is fully visible
+            self.chat_container.adjustSize()
+            QtCore.QTimer.singleShot(0, 
+                lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum())
+            )
+        else:
+            # Fallback: if the last item wasn't the expected DA bubble, just add the message.
+            self.__update_chat(text, False)
     
     def __update_chat(self, message, is_user_message):
         bubble = ChatBubble(message, is_user_message)
