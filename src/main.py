@@ -7,8 +7,8 @@ from interfaces.llm_adapter_interface import LLMAdapter
 from utils.system_prompt_generator import AssistantSystemPromptGenerator
 from core.assistant_backend import AssistantBackend
 from utils.function_handler import AssistantFunctionHandler
-from ui.assistant_gui import AssistantGUI
-from ui.chat_handler import AssistantChatHandler
+from presentation.assistant_gui import AssistantGUI
+from presentation.chat_handler import AssistantChatHandler
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 def main():

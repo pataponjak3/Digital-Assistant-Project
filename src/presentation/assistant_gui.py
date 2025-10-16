@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import QObject, QRunnable, QThreadPool, pyqtSignal, pyqtSlot
-from ui.mic_settings_interface import MicSettingsWindow
+from presentation.mic_settings_interface import MicSettingsWindow
 from interfaces.chat_handler_interface import ChatHandler
 
 class _GenericWorker(QRunnable):
