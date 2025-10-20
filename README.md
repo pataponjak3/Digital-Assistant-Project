@@ -31,18 +31,18 @@ If you are participating in the **usability questionnaire**, please read this se
 The assistant requires **Python 3.10.11** and **pip** (Python's package manager).
 
 1. Download Python 3.10.11 from the [official Python website](https://www.python.org/downloads/release/python-31011/) and download the Windows installer (64 or 32-bit) under the Files section.
-2. During installation, **check the box "Add Python to PATH"** - this is essential for enabling the python command in any location of the system.
-3. After installation, open a terminal (Command Prompt or PowerShell) and type:
+2. During installation, **check the box "Add python.exe to PATH"** - this is essential for enabling the python command in any location of the system.
+3. After installation, open a terminal (by searching Command Prompt or PowerShell in the Windows search bar) and type:
 ```bash
 python --version
 pip --version
 ```
-Both commands should display a version number. If they don't, restart your computer and ensure that Python was added to the PATH.
+Both commands should display a version number. If they don't, restart your computer and ensure that Python was added to the PATH (a simple way to do that is reinstalling Python, **checking the box "Add python.exe to PATH"**).
 
 ### Download or Clone the Project
 
 You can either:
-- Download the ZIP file from the GitHub repository (by clicking the green Code button and selecting the Download ZIP option) and extract it,
+- Download the ZIP file from the GitHub repository (by clicking the green Code button on the top of the page and selecting the Download ZIP option) and extract it wherever you want,
 
     **or**
 - Clone the repository using git:
@@ -81,7 +81,7 @@ venv\Scripts\activate
 Once activated, your terminal prompt should start with `(venv)`, it's in this mode that you'll install the dependencies and start the assistant.
 
 ### Install Dependencies
-Use pip to install all the required Python libraries:
+Use pip to install all the required Python libraries in the terminal prompt with the `(venv)`:
 ```bash
 pip install -r requirements.txt
 ```
@@ -91,7 +91,7 @@ If you see any warnings, they can usually be ignored unless the installation fai
 
 The assistant requires a few environment variables to function correctly.
 1. Create a file named `.env` in the **root folder** of the project
-    * This is a file without a name with the extension `.env`, to create such files, ensure that you can see file name extensions. This is possible by enabling the option by the same name on the File Explorer, under the View tab (on Windows 11, after clicking the View tab, you must also select the option Show).
+    * This is a file without a name with the extension `.env`, to create such files (you can start by creating a text document and deleting the name + the extension), ensure that you can see file name extensions. This is possible by enabling the option by the same name on the File Explorer, under the View tab (on Windows 11, after clicking the View tab, you must also select the option Show).
 2. Add the following content:
 ```env
 PYTHONPATH=src
@@ -114,7 +114,7 @@ HUGGINGFACE_KEY=your_api_key_here
 
 ### Run the Digital Assistant
 
-After creating the `.env` file, start the assistant by running:
+After creating the `.env` file and putting your API keys, go to the terminal prompt with the `(venv)` and start the assistant by running:
 ```bash
 python -m src.main
 ```
