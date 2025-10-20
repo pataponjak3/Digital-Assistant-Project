@@ -66,11 +66,11 @@ python -m venv venv
 > With this, a terminal will open directly in that folder
 
 <figure align=center>
-    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/61659191/503240677-fe53e1b9-2e35-45fa-8533-745f9c1e7405.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251020T142908Z&X-Amz-Expires=300&X-Amz-Signature=13a8c499cf3c606ae6c6ecf902d5e03c6a29e5ca4442dea599303900de019719&X-Amz-SignedHeaders=host" alt="Showing folder path" width="600"/>
+    <img src="https://github.com/user-attachments/assets/fe53e1b9-2e35-45fa-8533-745f9c1e7405" alt="Showing folder path" width="600"/>
     <figcaption>Showing folder path</figcaption>
 </figure>
 <figure align=center>
-  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/61659191/503240958-5e1798ff-af38-447c-bb8d-45aa7678a6cf.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251020T142918Z&X-Amz-Expires=300&X-Amz-Signature=a7db9c795f21b46b24fa6608d653f1250597c8472a04d5649adb50fdd832eab3&X-Amz-SignedHeaders=host" alt="Writting `cmd`" width="600"/>
+  <img src="https://github.com/user-attachments/assets/5e1798ff-af38-447c-bb8d-45aa7678a6cf" alt="Writting `cmd`" width="600"/>
   <figcaption>Writting "cmd"</figcaption>
 </figure>
 
