@@ -53,15 +53,32 @@ cd Digital-Assistant-Project
 
 ### Create a Virtual Environment
 
-A virtual environment isonates the dependencies of the project, the following command should be executed on the project's root folder:
+A virtual environment isolates the dependencies of the project, the following command should be executed on the project's root folder (you can do this by being in the project's root folder, clicking the folder's path and writting `cmd`):
+
 ```bash
 python -m venv venv
 ```
+> 💡 **Tip:** To open a command window in the project folder:
+> 1. Open the folder where you extracted or cloned the project
+> 2. Click on the folder path bar at the top of File Explorer
+> 3. Type `cmd` and press **Enter**.
+>
+> With this, a terminal will open directly in that folder
+
+<figure align=center>
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/61659191/503240677-fe53e1b9-2e35-45fa-8533-745f9c1e7405.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251020T142908Z&X-Amz-Expires=300&X-Amz-Signature=13a8c499cf3c606ae6c6ecf902d5e03c6a29e5ca4442dea599303900de019719&X-Amz-SignedHeaders=host" alt="Showing folder path" width="600"/>
+    <figcaption>Showing folder path</figcaption>
+</figure>
+<figure align=center>
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/61659191/503240958-5e1798ff-af38-447c-bb8d-45aa7678a6cf.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251020%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251020T142918Z&X-Amz-Expires=300&X-Amz-Signature=a7db9c795f21b46b24fa6608d653f1250597c8472a04d5649adb50fdd832eab3&X-Amz-SignedHeaders=host" alt="Writting `cmd`" width="600"/>
+  <figcaption>Writting "cmd"</figcaption>
+</figure>
+
 Then activate it:
 ```bash
 venv\Scripts\activate
 ```
-Once activated, your terminal prompt should start with `(venv)`
+Once activated, your terminal prompt should start with `(venv)`, it's in this mode that you'll install the dependencies and start the assistant.
 
 ### Install Dependencies
 Use pip to install all the required Python libraries:
