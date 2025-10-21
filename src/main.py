@@ -31,6 +31,7 @@ def main():
     backend = AssistantBackend(llm_adapter, AssistantFunctionHandler(functionality_modules), support)
     # Initialize the GUI & Chat Handler
     chat_handler = AssistantChatHandler(backend, module_loader.load_base_module("ss"), module_loader.load_base_module("sr"))
+    #Starting the GUI application
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
     ui = AssistantGUI(chat_handler)

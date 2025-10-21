@@ -20,6 +20,7 @@ rapidfuzz==3.13.0        # For fuzzy string matching (e.g., command recognition)
 
 # GUI (Optional, if building a graphical interface)  
 PyQt5
+pyqt5-tools
 
 # Testing  
 pytest==8.0.0           # For writing unit tests  
