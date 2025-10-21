@@ -52,7 +52,7 @@ class ChatBubble(QtWidgets.QWidget):
         base_style = (
             "border-radius: 10px;"
             "padding: 8px 12px;"
-            "font-size: 14px;"
+            "font-size: 11pt 'Segoe UI';"
         )
 
         #Set bubble style
