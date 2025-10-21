@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Tuple
 
 class SpeechRecognizer(ABC):
     @abstractmethod
-    def recognize_speech(self) -> Optional[str]:
+    def recognize_speech(self) -> Tuple[Optional[str], str]:
         """
         Method that recognizes speech
         
-        :return: Recognized text or None if recognition fails
-        :rtype: Optional[str]
+        :return: A tuple (recognized_text, status), where recognized_text is the transcribed text or None if unrecognized, and status is a string indicating the result status ("ok", "unrecognized", "request_error")
+        :rtype: Tuple[Optional[str], str]
         """
     
     @abstractmethod

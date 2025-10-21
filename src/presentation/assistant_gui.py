@@ -96,6 +96,7 @@ class AssistantGUI(object):
         self.__chat_handler = chat_handler
 
     def setupUi(self, MainWindow: QMainWindow):
+        self._main_window = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -260,12 +261,33 @@ class AssistantGUI(object):
             if voiced:
                 worker = _GenericWorker(self.__chat_handler.recognize_voice)
                 worker.connect_finished_signal(self.__handle_chat_message)
+                self.__set_input_enabled(False)
                 self.__threadpool.start(worker)
             else:
                 user_text = self.lineEdit.text().strip()
                 self.__handle_chat_message(user_text)
 
-    def __handle_chat_message(self, user_message: str | None):
+    def __handle_chat_message(self, user_message: str | tuple[str | None, str] | None):
+        if isinstance(user_message, tuple):
+            text, status = user_message
+            if status == "unrecognized":
+                QtWidgets.QMessageBox.warning(
+                    self._main_window,
+                    "Speech Recognition Error",
+                    "Sorry, I couldn't understand what you said.\nPlease try speaking again or use the text box instead."
+                )
+                self.__set_input_enabled()
+                return
+            elif status == "request_error":
+                QtWidgets.QMessageBox.critical(
+                    self._main_window,
+                    "Speech Recognition Error",
+                    "There was a problem connecting to the speech recognition service.\nPlease check your internet connection and try again."
+                )
+                self.__set_input_enabled()
+                return
+            user_message = text
+        
         if user_message:
             self.__handle_user_message(user_message)
             self.__set_input_enabled(False)

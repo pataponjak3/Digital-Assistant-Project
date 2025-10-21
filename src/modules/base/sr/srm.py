@@ -16,13 +16,13 @@ class SpeechRecognitionModule(SpeechRecognizer):
         try:
             text = self.__recognizer.recognize_google(audio)
             print("Recognized:", text)
-            return text
+            return text, "ok"
         except sr.UnknownValueError:
             print("Could not understand audio")
-            return None
+            return None, "unrecognized"
         except sr.RequestError as e:
             print("Could not request results; {0}".format(e))
-            return None
+            return None, "request_error"
     
     def list_microphones(self):
         return sr.Microphone.list_working_microphones()

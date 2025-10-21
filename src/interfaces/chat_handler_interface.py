@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from interfaces.backend_interface import Backend
 from interfaces.sr_interface import SpeechRecognizer
 from interfaces.ss_interface import SpeechSynthesizer
-from typing import Optional
+from typing import Optional, Tuple
 
 class ChatHandler(ABC):
     @property
@@ -68,10 +68,10 @@ class ChatHandler(ABC):
         """
     
     @abstractmethod
-    def recognize_voice(self) -> Optional[str]:
+    def recognize_voice(self) -> Tuple[Optional[str], str]:
         """
         Recognize speech from the microphone.
 
-        :return: Recognized text or None if recognition fails.
-        :rtype: Optional[str]
+        :return: A tuple (recognized_text, status), where recognized_text is the transcribed text or None if unrecognized, and status is a string indicating the result status ("ok", "unrecognized", "request_error")
+        :rtype: Tuple[Optional[str], str]
         """
