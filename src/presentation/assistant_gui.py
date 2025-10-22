@@ -34,7 +34,10 @@ class _GenericWorker(QRunnable):
         self.__signals.finished.emit(result)
 
 class ChatBubble(QtWidgets.QWidget):
-    __font_pixel_size = 14
+    __font_point_size = 11
+    __border_radius = 10
+    __padding_top_bottom = 8
+    __padding_left_right = 8
     __max_bubble_width = int(800 * 0.85)
     def __init__(self, text, is_user, parent=None):
         super().__init__(parent)
@@ -50,9 +53,9 @@ class ChatBubble(QtWidgets.QWidget):
         self._text_label.setSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred) 
 
         base_style = (
-            "border-radius: 10px;"
-            "padding: 8px 12px;"
-            "font-size: 11pt 'Segoe UI';"
+            f"border-radius: {self.__border_radius}px;"
+            f"padding: {self.__padding_top_bottom}px {self.__padding_left_right}px;"
+            f"font-size: {self.__font_point_size}pt 'Segoe UI';"
         )
 
         #Set bubble style
@@ -77,10 +80,11 @@ class ChatBubble(QtWidgets.QWidget):
 
     def calculate_bubble_width(self, text):
         font = self._text_label.font()
-        font.setPixelSize(self.__font_pixel_size)
+        font.setPointSize(self.__font_point_size)
         metrics = QtGui.QFontMetrics(font)
         text_width_px = metrics.horizontalAdvance(text)
-        min_bubble_width = min(text_width_px+24+10, self.__max_bubble_width)
+        bubble_padding = self.__border_radius + self.__padding_left_right * 2
+        min_bubble_width = min(text_width_px + bubble_padding, self.__max_bubble_width)
         self._text_label.setMinimumWidth(min_bubble_width)
 
 class AssistantGUI(object):
