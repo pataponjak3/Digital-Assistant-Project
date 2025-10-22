@@ -1,6 +1,9 @@
 # Core Python dependencies  
 python-dotenv==1.1.0    # For managing environment variables  
-requests==2.32.3        # For API calls (e.g., weather updates)  
+requests==2.32.3        # For API calls (e.g., weather updates)
+
+#Windows dependency
+pywin32 
 
 # Speech Recognition  
 SpeechRecognition==3.14.2	# For converting speech to text  

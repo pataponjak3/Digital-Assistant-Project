@@ -2,13 +2,14 @@ from interfaces.functionality_interface import Functionality
 import os
 import subprocess
 from win32com.client import Dispatch
+from win32com.shell import shell, shellcon
 from rapidfuzz import process, fuzz
 
 class OSFunctionality(Functionality):
     # Define common Start Menu directories
     __START_MENU_DIRS = [
-        os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs"),
-        os.path.expandvars(r"%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs")
+        shell.SHGetFolderPath(0, shellcon.CSIDL_PROGRAMS, None, 0),
+        shell.SHGetFolderPath(0, shellcon.CSIDL_COMMON_PROGRAMS, None, 0)
     ]
 
     __EXCLUDE_KEYWORDS = ["uninstall", "setup", "remove", "update", "help", "readme", "documentation", "docs", "manual", "config", "configuration", "preferences", "settings", "about", "license", "legal", "terms", "privacy"]
@@ -102,7 +103,6 @@ Arguments:
                     if self.__is_valid_app_shortcut(full_path):
                         name = os.path.splitext(file)[0].strip().lower()
                         shortcuts[name] = full_path
-        print
         return shortcuts
     
     def __get_best_matches(self, app_name: str, shortcuts: dict, limit=5, score_threshold=80) -> list[tuple[str, int]]:
@@ -125,6 +125,8 @@ Arguments:
             limit=limit
         )
 
+        print("Matches found:", matches)
+
         return [(match, score) for match, score, _ in matches if score >= score_threshold]
     
     def _launch_application(self, app_name: str, is_sure_after_multiple_matches: bool=False) -> str:
@@ -140,6 +142,7 @@ Arguments:
             
         existing_dirs = [d for d in self.__START_MENU_DIRS if os.path.isdir(d)]
         if not existing_dirs:
+            print("No dirs\n")
             return (
                 "Start Menu directories could not be found. "
                 "This functionality depends on application shortcuts located in the Windows Start Menu. "
@@ -148,15 +151,16 @@ Arguments:
         
         shortcuts = self.__get_all_shortcuts()
         if not shortcuts:
+            print("No shortcuts\n")
             return (
                 "No application shortcuts were found in the Start Menu.\n"
                 "Only applications that have Start Menu shortcuts can be launched by this assistant. "
                 "If your desired application is not found, please ensure it has a shortcut in the Start Menu."
-            )
-        
+            )       
         high_matches = self.__get_best_matches(app_query, shortcuts)
 
         if not high_matches:
+            print("No matches\n")
             return (
                 f"No matching applications found for '{app_query}'.\n"
                 "Make sure the application has a shortcut in the Start Menu and try again."
