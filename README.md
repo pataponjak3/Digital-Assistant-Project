@@ -1,7 +1,24 @@
 # Digital-Assistant-Project
-This repository contains the implementation of a **modular digital assistant (DA)** developed as part of a **Master’s thesis** in Computer Science and Computer Engineering from ISEL.  
-The assistant is built in **Python** and optimized for the **Windows desktop environment**, providing both **text** and **voice-based** interaction.  
-It integrates **Large Language Models (LLMs)** to interpret user requests and dynamically choose between conversational responses and function execution — for example, retrieving weather data or launching applications.
+Code developled for my Master's Thesis entitled:
+### *Digital Assistant with Artificial Intelligence Techniques*
+
+Master's in Computer Science and Computer Engineering at [Lisbon School of Engineering (ISEL)](https://www.isel.pt/en), 2025 
+
+The system is a **modular digital assistant (DA)**, built in **Python** and optimized for the **Windows desktop environment**, providing both **text** and **voice-based** interaction.  
+It integrates **Large Language Models (LLMs)** to interpret user requests and dynamically choose between conversational responses and function execution — for example, retrieving weather data or launching applications.  
+
+The full thesis is present [here](/thesis/Digital_Assistant_with_Artificial_Intelligence_Techniques_signed.pdf).  
+Associated scientific publications include:
+- António Goulão, Dinis Dias, Artur Ferreira, and Nuno Leite,  
+  *“A Personal Digital Assistant Enhanced with Artificial Intelligence Techniques”*,  
+  *Simpósio em Informática (INForum)*, September 2025, Évora, Portugal.  
+  [Available on ResearchGate](https://www.researchgate.net/publication/395268319_A_Personal_Digital_Assistant_Enhanced_with_Artificial_Intelligence_Techniques)
+
+- António Goulão, Dinis Dias, Artur Ferreira, and Nuno Leite,  
+  *“A Modular Digital Assistant for Windows with Large Language Models”*,  
+  *Portuguese Conference on Pattern Recognition (RECPAD)*, October 2025, Aveiro, Portugal.  
+  The article is present [here](/thesis/papers/RECPAD2025.pdf)
+
 
 ---
 ## Project Overview
