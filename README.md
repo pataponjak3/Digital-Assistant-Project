@@ -2,7 +2,7 @@
 Code developled for my Master's Thesis entitled:
 ### *Digital Assistant with Artificial Intelligence Techniques*
 
-Master's in Computer Science and Computer Engineering at [Lisbon School of Engineering (ISEL)](https://www.isel.pt/en), 2025 
+Master's in Computer Science and Computer Engineering at [Lisbon School of Engineering (ISEL)](https://www.isel.pt/en), [Polytechnic University of Lisbon](https://www.ipl.pt/en), 2025
 
 The system is a **modular digital assistant (DA)**, built in **Python** and optimized for the **Windows desktop environment**, providing both **text** and **voice-based** interaction.  
 It integrates **Large Language Models (LLMs)** to interpret user requests and dynamically choose between conversational responses and function execution — for example, retrieving weather data or launching applications.  
@@ -17,7 +17,7 @@ Associated scientific publications include:
 - António Goulão, Dinis Dias, Artur Ferreira, and Nuno Leite,  
   *“A Modular Digital Assistant for Windows with Large Language Models”*,  
   *Portuguese Conference on Pattern Recognition (RECPAD)*, October 2025, Aveiro, Portugal.  
-  The article is present [here](/thesis/papers/RECPAD2025.pdf)
+  [Available on ResearchGate](https://www.researchgate.net/publication/397138243_A_Modular_Digital_Assistant_for_Windows_with_Large_Language_Models)
 
 
 ---
